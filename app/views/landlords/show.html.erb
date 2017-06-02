@@ -1,0 +1,32 @@
+<% content_for :title do %>
+<%= @tenant.name %>
+<% end %>
+
+<% content_for :main_content do %>
+<hr>
+<h1 class="page_heading"><span><%= @tenant.name %></span></h1>
+<hr>
+
+
+<p>
+  <strong>First name:</strong>
+  <%= @landlord.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @landlord.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @landlord.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @landlord.phone %>
+</p>
+
+<%= link_to 'Edit', edit_landlord_path(@landlord) %> |
+<%= link_to 'Back', landlords_path %>

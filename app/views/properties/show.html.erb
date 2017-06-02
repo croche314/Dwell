@@ -1,0 +1,82 @@
+<% content_for :title do %>
+<%= @property.street %>
+<% end %>
+
+<% content_for :main_content do %>
+<hr>
+<%= image_tag(@property.img, alt: @property.street, class: 'heading_img img-thumbnail') %>
+<h1 class="page_heading"><span><%= @property.street %></span></h1>
+<hr>
+
+<!-- PROPERTY DETAILS -->
+<div class="row">
+  <h4 class="sub_heading">Property Details</h4>
+  <div class="col-sm-4">
+    <p><strong>Building Type:</strong> <%= @property.building_type %></p>
+    <p><strong>City:</strong> <%= @property.city %></p>
+    <p><strong>State:</strong> <%= @property.state %></p>
+    <p><strong>Zip Code:</strong> <%= @property.zip_code %></p>
+  </div> <!-- .col -->
+  <div class="col-sm-4">
+    <p><strong>Number of Units: </strong><%= @num_units %></p>
+    <p><strong>Monthly Income:</strong> $<%= @property.monthly_income %></p>
+    <p><strong>Units Occupied:</strong> <%= @units_occupied %></p>
+    <p><strong>Units Vacant:</strong> <%= @num_units - @units_occupied %></p>
+  </div> <!-- .col -->
+  <div class="col-sm-4">
+    <p><strong>Pets Allowed:</strong> <%= @property.pets %></p>
+    <p><strong>Outdoor Space:</strong> <%= @property.outdoor_space %></p>
+    <p><strong>Neighborhood:</strong> <%= @property.neighborhood %></p>
+  </div> <!-- .col -->
+
+</div> <!-- .row -->
+<% if @property.landlord == current_user %>
+    <br>
+    <a class="btn btn-default" href="/properties/<%= @property.id %>/edit">Edit Property</a>
+  <% end %>
+<hr>
+
+<!-- UNITS -->
+<div class="row thumbnail-row">
+  <h4 class="sub_heading">Units</h4>
+  <% @units.each do |u| %>
+    <div class="col-sm-4">
+        <div class="thumbnail one_unit">
+          <br>
+          <img src="<%= image_path('generic-door.png') %>" alt="generic home">
+          <hr>
+          <div class="caption">
+            <p class="street"><%= u.name %></p>
+            <p>Monthly rent: $<%= u.rent %></p>
+            <p>Tenants:
+              <% u.tenants.each do |t| %>
+              &nbsp;<a href="/tenants/<%= t.id %>"><%= t.first_name %> <%= t.last_name %></a>&nbsp;
+              <% end %>
+            </p>
+            <% if !u.occupied %>
+              <label class="label label-danger">Vacant</label>
+            <% else %>
+            <label class="label label-primary">Occupied</label>
+                <% if u.tenants.where(late: true).length > 0 %>
+               <label class="label label-danger">Late</label>
+               <% else %>
+               <label class="label label-success">Current</label>
+               <% end %>
+            <% end %>
+            <a class="btn btn-default btn-block label-main" href="/units/<%= u.id %>">Unit Details</a>
+            <a class="btn btn-default btn-block label-main" href="/units/<%= u.id %>/delete">Delete Unit</a>
+          </div> <!-- .caption -->
+        </div> <!-- .thumbnail -->
+      
+    </div> 
+  <% end %>
+  <br><br>
+</div> <!-- .row -->
+  <a class="btn btn-default" href="/units/<%= @property.id %>/new">New Unit</a>
+
+<hr>
+
+<div class="row thumbnail-row">
+  <h4 class="sub_heading">Applications</h4>
+</div> <!-- .row -->
+<% end %>

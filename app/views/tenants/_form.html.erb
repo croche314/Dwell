@@ -1,0 +1,53 @@
+<%= form_for(@tenant, :html => {:class => 'centered-form'}) do |f| %>
+  <% if @tenant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tenant.errors.count, "error") %> prohibited this tenant from being saved:</h2>
+
+      <ul>
+      <% @tenant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :first_name %><br>
+    <%= f.text_field :first_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :last_name %><br>
+    <%= f.text_field :last_name, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :birthdate %><br>
+    <%= f.text_field :birthdate, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :phone %><br>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %><br>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %><br>
+    <%= f.text_field :password, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :bio %><br>
+    <%= f.text_area :bio, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :income %><br>
+    <%= f.number_field :income, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :smoker %><br>
+    <%= f.check_box :smoker, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.submit 'Update', :class => 'btn btn-default btn-block label-main'%>
+  </div>
+<% end %>

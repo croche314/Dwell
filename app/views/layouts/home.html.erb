@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= yield :title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,600|Rubik:300,400,700|Biryani:300,400,700" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+	<div id="home" class="row">
+		<div class="side_nav col-sm-2">
+			<!-- LEFT NAV -->
+
+			<div class="row">
+				<!-- Logo -->
+				<a id="logo" href="<%= root_path %>">
+					<img src="<%= image_path('house-roof-yellow.png') %>">
+					<h1>Dwell</h1>
+				</a>
+			</div> <!-- .row -->
+			<div class="row">
+				<nav>
+					<ul class="list-unstyled">
+						<label class="text-muted">For Landlords</label>
+						<li><a href="#">Collect Rent Online</a></li>
+						<li><a href="#">Tenant Screening</a></li>
+						<li><a href="#">Property Listings</a></li>
+						<li><a href="#">Rental Applications</a></li>
+						<li><a href="#">Rent Estimates</a></li>
+					</ul>
+					<ul class="list-unstyled">
+						<label class="text-muted">For Renters</label>
+						<li><a href="#">Renter Profile</a></li>
+						<li><a href="#">Pay Rent Online</a></li>
+					</ul>
+					<ul class="list-unstyled">
+						<label class="text-muted">Get Dwell</label>
+						<li><a href="#">How Dwell Works</a></li>
+						<li><a href="#">Customer Love</a></li>
+						<li><a href="#">Features &amp; Pricing</a></li>
+					</ul>
+				</nav>
+			</div> <!-- .row -->
+
+					</div>
+		<div class="main_content col-sm-10 col-sm-offset-2">
+			<%= yield :main_content %>
+		</div>
+	</div>
+</div>
+<%= yield %>
+</body>
+</html>

@@ -1,0 +1,23 @@
+// Place all the styles related to the Properties controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.one_unit {
+ 	height: 400px;
+ }
+
+ .one_unit p {
+ 	margin: 0;
+ }
+
+ .one_unit a {
+ 	padding: 0;
+ }
+
+ .one_unit .btn {
+ 	display: block;
+ 	font-size: 14px;
+ 	line-height: 20px;
+ 	padding: 6px 12px;
+ 	margin: 10px auto;
+ }

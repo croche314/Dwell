@@ -1,0 +1,51 @@
+<% content_for :title, "Dwell | Free Property Management Software for Landlords and Renters" %>
+
+<!-- MAIN CONTENT -->
+<% content_for :main_content do %>
+<!-- Headline -->
+<div class="row headline">
+	<div class="col-sm-12">
+		<div class="headline_text">
+			<h1>The Better Way to Rent<span>&reg;</span></h1>
+			<h2>Modern property management for landlords, property managers, and renters</h2>
+			</div>
+		</div>
+	</div> <!-- .row -->
+
+	<!-- Get Started -->
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<h2>Get Started. It's Free</h2>
+			<p class="small">Already have an account? <a href="/login/sign_in">Sign In</a></p>
+
+			<!-- Register Form -->
+			<form id="register_form" action="/login/register" method="post">
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<div class="form-group">
+					<select class="form-control" name='user_type'>
+						<option>Please Select...</option>
+						<option value="landlord">Landlord</option>
+						<option value="renter">Renter</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="first_name" placeholder="First name">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="last_name" placeholder="Last name">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="text" name="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" name="password" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<input class="form-control" type="password" name="password_confirmation" placeholder="Password Confirmation">
+				</div>
+				<input class="btn btn-default" type="submit" value="Create Account">
+			</form>
+		</div> <!-- .col -->
+	</div> <!-- .row -->
+</div> <!-- .row -->
+<% end %>

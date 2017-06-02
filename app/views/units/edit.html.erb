@@ -1,0 +1,11 @@
+<% content_for :title, 'Edit Unit' %>
+
+<% content_for :main_content do %>
+<hr>
+<h1 class="page_heading"><span>Edit Property</span></h1>
+<hr>
+<%= render 'form' %>
+<% end %>
+
+<%= link_to 'Show', @unit %> |
+<%= link_to 'Back', units_path %>

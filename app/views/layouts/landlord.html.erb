@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dwell | <%= yield :title %></title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,600|Rubik:300,400,700|Biryani:300,400,700" rel="stylesheet">
+  
+</head>
+<body>
+<div class="container-fluid">
+	<!-- CURRENT USER -->
+	<% if session[:user_id] %>
+		<a class="btn btn-default pull-right" href="/logout">Log Out</a>
+	<% end %>
+	<!-- FLASH MESSAGES -->
+	<% if flash[:success] or flash[:warning] %>
+		<% flash.each do |type,msg| %>
+			<% msg.each do |i| %>
+			<h4><span class="flash label label-<%= type %>"><%= i %></span></h4>
+			<% end %>
+		<% end %>
+	<% end %>
+
+	<div class="row">
+		<div class="side_nav col-sm-2">
+			<!-- LEFT NAV -->
+			<div class="row">
+				<!-- Logo -->
+				<a id="logo" href="<%= root_path %>">
+					<img src="<%= image_path('house-roof-yellow.png') %>">
+					<h1>Dwell</h1>
+				</a>
+			</div> <!-- .row -->
+			<div class="row">
+				<nav>
+					<ul class="list-unstyled">
+						<li><a href="/landlords/dashboard">Dashboard</a></li>
+						<li><a href="#">Properties</a></li>
+						<li><a href="#">Leases</a></li>
+						<li><a href="#">Listings</a></li>
+						<li><a href="#">Screening</a></li>
+						<li><a href="#">Banks &amp; Cards</a></li>
+					</ul>
+				</nav>
+			</div> <!-- .row -->
+		</div>
+		<div class="col-sm-10 col-sm-offset-2">
+			<%= yield :main_content %>
+		</div>
+	</div> <!-- .row -->
+</div> <!-- .container-fluid -->
+</body>
+</html>

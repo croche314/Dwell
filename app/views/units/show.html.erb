@@ -1,0 +1,130 @@
+<% content_for :title do %>
+<%= @unit.name %>
+<% end %>
+
+<% content_for :main_content do %>
+<hr>
+<h1 class="page_heading"><%= @unit.name %> <br><a class="small" href="/properties/<%= @unit.property.id %>"><%= @unit.property.street %></a></h1>
+<hr>
+
+<!-- UNIT DETAILS -->
+<div class="row">
+  <h4 class="sub_heading">Unit Details</h4>
+  <div class="col-sm-3">
+    <p>
+    <strong>Property:</strong>
+    <a href="/properties/<%= @unit.property.id %>">
+      <%= @unit.property.street %>
+    </a>
+    </p>
+
+    <p>
+      <strong>Name:</strong>
+      <%= @unit.name %>
+    </p>
+
+    <p>
+      <strong>Rent:</strong>
+      $<%= @unit.rent %>
+    </p>
+
+    <p>
+      <strong>Occupied:</strong>
+      <%= @unit.occupied %>
+    </p>
+    </div> <!-- .col -->
+
+    <div class="col-sm-3">
+    <p>
+      <strong>Lease end:</strong>
+      <%= @unit.lease_end %>
+    </p>
+
+    <p>
+      <strong>Bedrooms:</strong>
+      <%= @unit.bedrooms %>
+    </p>
+
+    <p>
+      <strong>Bathrooms:</strong>
+      <%= @unit.bathrooms %>
+    </p>
+
+    <p>
+      <strong>Washer dryer:</strong>
+      <%= @unit.washer_dryer %>
+    </p>
+    </div>
+    <div class="col-sm-3">
+    <p>
+      <strong>Parking:</strong>
+      <%= @unit.parking %>
+    </p>
+
+    <p>
+      <strong>Floor:</strong>
+      <%= @unit.floor %>
+    </p>
+
+    <p>
+      <strong>Utilities:</strong>
+      <%= @unit.utilities %>
+    </p>
+
+    <p>
+      <strong>Furnished:</strong>
+      <%= @unit.furnished %>
+    </p>
+    </div>
+    <div class="col-sm-3">
+    <p>
+      <strong>Sq feet:</strong>
+      <%= @unit.sq_feet %>
+    </p>
+  </div>
+  <hr>
+</div> <!-- .row -->
+<a class="btn btn-default" href="/units/<%= @unit.id %>/edit">Edit Unit</a>
+<hr>
+
+<!-- TENANTS -->
+<div class="row">
+  <h4 class="sub_heading">Tenants</h4>
+  <% @tenants.each do |t| %>
+    <div class="col-sm-4">
+        <div class="thumbnail one_tenant">
+          <br>
+          <img src="<%= image_path('generic-user.png') %>" alt="generic user">
+          <hr>
+          <div class="caption">
+            <p class="street"><%= t.first_name %> <%= t.last_name %></p>
+            <p><%= t.phone %></p>
+            <p><%= t.email %></p>
+            <% if t.late %>
+            <label class="label label-danger">Late</label>
+            <% else %>
+            <label class="label label-success">Current</label>
+            <% end %>
+            <br>
+            <a class="btn btn-default btn-block label-main" href="/tenants/<%= t.id %>">Tenant Details</a>
+            <a class="btn btn-default btn-block label-main">View Lease</a>
+            <a class="btn btn-default btn-block label-main" href="/units/<%= @unit.id %>/remove_tenant/<%= t.id %>">
+              Remove Tenant
+            </a>
+
+          </div> <!-- .caption -->
+        </div> <!-- .thumbnail -->
+      
+    </div> 
+  <% end %>
+</div> <!-- .row -->
+<a class="btn btn-default" href="/units/<%= @unit.id %>/new_tenant">Add Tenant</a>
+
+<hr>
+
+<div class="row">
+  <h4 class="sub_heading">Issues</h4>
+</div> <!-- .row -->
+
+
+<% end %>

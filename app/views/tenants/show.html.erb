@@ -1,0 +1,90 @@
+<% content_for :title do %>
+<%= @tenant.first_name %> <%= @tenant.last_name %>
+<% end %>
+
+<% content_for :main_content do %>
+<hr>
+<h1 class="page_heading">
+  <%= @tenant.first_name %> <%= @tenant.last_name %>
+  <% if @tenant.late %>
+      <label class="label label-danger label-lg">Late</label>
+  <% end %>
+</h1>
+<hr>
+<div class="row">
+  <h4 class="sub_heading">Tenant Details</h4>
+  <div class="col-sm-3">
+    <p>
+      <strong>Property:</strong>
+      <%= @tenant.property.street if @tenant.property%>
+    </p>
+
+    <p>
+      <strong>Unit:</strong>
+      <%= @tenant.unit.name if @tenant.unit %>
+    </p>
+
+    <p>
+      <strong>First name:</strong>
+      <%= @tenant.first_name %>
+    </p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @tenant.last_name %>
+    </p>
+  </div> <!-- .col -->
+  <div class="col-sm-3">
+
+    <p>
+      <strong>Birthdate:</strong>
+      <%= @tenant.birthdate if @tenant.birthdate%>
+    </p>
+
+    <p>
+      <strong>Phone:</strong>
+      <%= @tenant.phone %>
+    </p>
+
+    <p>
+      <strong>Email:</strong>
+      <%= @tenant.email %>
+    </p>
+
+    <p>
+      <strong>Bio:</strong>
+      <%= @tenant.bio if @tenant.bio%>
+    </p>
+  </div>
+  <div class="col-sm-3">
+
+    <p>
+      <strong>Income:</strong>
+      $<%= @tenant.income if @tenant.income %>
+    </p>
+
+    <p>
+      <strong>Smoker:</strong>
+      <%= @tenant.smoker if @tenant.smoker %>
+    </p>
+  </div>
+  <% if @tenant == current_user %>
+    <a class="btn btn-default" href="/tenants/<%= @tenant.id %>/edit">Edit Profile</a>
+  <% end %>
+</div> <!-- .row -->
+<hr>
+<% if @tenant.landlord_id == current_user.id %>
+  <div class="row">
+    <h4 class="sub_heading">Actions</h4>
+    <div class="tenant_actions">
+        <a class="btn btn-info">View Lease</a>
+        <a class="btn btn-info">View Tenant History</a>
+        <a class="btn btn-info">Move to Another Unit</a>
+        <a class="btn btn-info" href="/units/<%= @tenant.unit.id %>/remove_tenant/<%= @tenant.id %>">Remove from Unit</a>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h4 class="sub_heading">Issues</h4>
+  </div>
+<% end %>
+<% end %>

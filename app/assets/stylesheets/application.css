@@ -1,0 +1,246 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require bootstrap/dist/css/bootstrap
+ *= require_self
+ */
+
+ .container-fluid {
+ 	font-family: 'Open Sans';
+ 	font-weight: 300;
+ }
+
+ .row {
+ 	padding: 0px 20px;
+ }
+
+ .inline {
+ 	display: inline;
+ }
+
+ .lorem {
+ 	width: 40%;
+ 	margin: 100px auto;
+ }
+
+ .centered-form {
+ 	width: 40%;
+ 	margin: 10px auto;
+ }
+
+ .heading_img {
+ 	width: 150px;
+ }
+
+ .page_heading {
+ 	display: inline-block;
+ 	font-family: 'Rubik';
+ 	font-weight: 300;
+ 	margin: 0;
+ 	padding-left: 50px;
+ 	color: #0FA3B1;
+ 	color: #333;
+ }
+
+ .label-main {
+ 	background-color: #0FA3B1;
+ 	color: white;
+ }
+
+ .label-lg {
+ 	font-size: 20px;
+ 	font-weight: normal;
+ 	line-height: 36px;
+ 	vertical-align: middle;
+ 	margin: 0;
+ }
+
+ .flash {
+ 	width: 50%;
+ 	margin: 0 auto;
+ }
+
+ .thumbnail_container {
+ 	margin: 10px;
+ }
+
+ #home { 
+ 	height: 900px;
+}
+
+ .side_nav h1 {
+ 	font-family: 'Bubbler One';
+ 	width: 50%;
+ 	margin: 10px auto;
+ }
+
+ #logo {
+ 	color: yellow;
+ 	text-align: center;
+ 	text-transform: none;
+ }
+
+ #logo img {
+ 	display: block;
+ 	width: 50px;
+ 	margin: 0 auto;
+ }
+
+ #logo h1 {
+ 	margin: -10px auto;
+ }
+
+ .side_nav {
+ 	position: fixed;
+ 	top: 0;
+ 	left: 0;
+	background-color: #5BC8AF;
+	color: #4D5359;
+	height: 100%;
+	background-color: #0FA3B1;
+	color: #1EFC1E;
+}
+
+.side_nav ul {
+	margin-top: 50px;
+	padding-left: 40px;
+}
+
+.side_nav li {
+	margin-top: 20px;
+}
+
+ .side_nav a {
+ 	color: #fff;
+ 	font-family: 'Open Sans';
+ 	font-weight: 700;
+ 	text-transform: uppercase;
+ }
+
+ .side_nav a:hover {
+ 	background-color: none;
+ }
+
+ #home .main_content {
+ 	padding: 0;
+ }
+
+ #home .row {
+ 	padding: 0;
+ }
+
+ #home .side_nav label {
+ 	text-transform: uppercase;
+ }
+
+ #home .side_nav ul {
+	margin-top: 30px;
+	padding-left: 40px;
+}
+
+#home .side_nav li {
+	margin-top: 10px;
+}
+
+ #home .side_nav a {
+ 	text-transform: none;
+ }
+
+ .headline {
+	min-height: 500px;
+	background: url('home.png') no-repeat;
+	background-size: contain;
+	color: #fff;
+	text-shadow: 1px 1px #333;
+	text-align: center;
+ }
+
+ .headline_text {
+	width: 80%;
+	margin: 100px auto;
+ }
+
+ #register_form {
+ 	width: 40%;
+ 	margin: 20px auto;
+ }
+
+ #sign_in_page {
+ 	padding-top: 100px;
+ }
+
+ #sign_in_page form {
+ 	width: 40%;
+ 	margin: 50px auto;
+ }
+
+ /* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {display:none;}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+ 
