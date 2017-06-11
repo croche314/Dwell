@@ -1,5 +1,5 @@
 class UnitsController < ApplicationController
-  before_action :set_unit, only: [:show, :edit, :new_tenant, :add_tenant, :update, :destroy]
+  before_action :set_unit, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
   layout 'landlord'
 
   # GET /units
@@ -12,6 +12,29 @@ class UnitsController < ApplicationController
   # GET /units/1.json
   def show
     @tenants = Unit.find(params[:id]).tenants
+    if @tenants.length > 0
+      @occupied = true
+      @late_tenants = @tenants.where(late:true).length
+      if @late_tenants > 0
+        @late = true
+      else @late_tenants < 1
+        @late = false
+      end
+    else
+      @late = nil
+      @occupied = false
+    end
+    @issues = @unit.issues
+  end
+
+  def show_lease
+
+  end
+
+  def remove_lease_img
+    @unit.remove_lease_img!
+    @unit.save
+    redirect_to '/units/'+@unit.id.to_s
   end
 
   # GET /units/new
@@ -65,7 +88,12 @@ class UnitsController < ApplicationController
   end
 
   def new_tenant
-    @all_tenants = Tenant.all
+    unless params[:query].nil?
+      @query = params[:query].capitalize
+      @all_tenants = Tenant.where('first_name=? OR last_name=? OR email=?', @query,@query,@query)
+    else
+      @all_tenants = Tenant.all
+    end
   end
 
   def add_tenant
@@ -118,6 +146,6 @@ class UnitsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def unit_params
-      params.require(:unit).permit(:property_id, :name, :rent, :occupied, :lease_end, :bedrooms, :bathrooms, :washer_dryer, :parking, :floor, :utilities, :furnished, :sq_feet, :landlord_id)
+      params.require(:unit).permit(:property_id, :name, :rent, :occupied, :lease_start, :lease_end, :bedrooms, :bathrooms, :washer_dryer, :parking, :floor, :utilities, :furnished, :sq_feet, :landlord_id,:lease_img)
     end
 end

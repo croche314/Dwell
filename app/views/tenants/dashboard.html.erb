@@ -1,0 +1,191 @@
+<% content_for :title, "Tenant Dashboard" %>
+
+<% content_for :main_content do %>
+
+<hr>
+<h1 class="page_heading"><span><%= current_user.first_name %>'s Dashboard</span></h1>
+<hr>
+
+<!-- MY UNIT -->
+<div class="row thumbnail-row">
+	<h4 class="sub_heading"><span>My Unit</span></h4>
+	<br>
+	<% if !current_user.unit_id.nil? %>
+	<div class="col-sm-4">
+			<a href="/units/<%= current_user.unit_id %>">
+
+				<div class="thumbnail one_unit">
+					<%= image_tag(@property.img, alt: @property.street) %>
+					<div class="caption">
+						<p class="street"><%= @property.street %> <%= @unit.name %></p>
+						<p><%= @property.city %>, <%= @property.state %>&nbsp;<%= @property.zip_code %></p>
+						<p>Neighborhood: <%= @property.neighborhood %></p>
+						<p>
+							<strong>Payment Status:</strong>
+						  <% if @tenant.late == true %>
+						  <label class="label label-danger">Late</label>
+						  <% else %>
+						  <label class="label label-success">Current</label>
+						  <% end %>
+						</p>
+					</div> <!-- .caption -->
+				</div> <!-- .thumbnail -->
+			</a>
+		</div> 
+		<% else %>
+		<a class="btn btn-default btn-big label-main" href="/tenants/7">Find a Unit!</a>
+		<% end %>
+</div> <!-- .row .thumbnail-row -->
+<hr>
+
+<!-- Only show My Issues and My Lease if tenant has a unit --> 
+<% if !current_user.unit_id.nil? %>
+
+<!-- MY ISSUES -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Issues</span></h4>
+	<br>
+	<!-- Issues Table -->
+  <table class="table table-striped table-responsive">
+    <tr>
+      <th>Date</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Urgency</th>
+      <th>Actions</th>
+    </tr>
+    <% @issues.each do |i| %>
+    <tr>
+      <td><%= i.created_at.strftime("%c") %></td>
+      <td><%= i.category %></td>
+      <td><%= i.description %></td>
+      <td>
+        <% case i.urgency %>
+        <% when 1 %>
+          <label class="label label-info">Just so you know...</label>
+        <% when 2 %>
+          <label class="label label-success">Not a huge deal</label>
+        <% when 3 %>
+          <label class="label label-default">Please address this ASAP</label>
+        <% when 4 %>
+          <label class="label label-warning">Immediate action required</label>
+        <% when 5 %>
+          <label class="label label-danger">Near-emergency</label>
+        <% end %>
+      </td>
+      <td>
+        <form action="/issues/<%= i.id %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input class="btn btn-default" type="submit" value="Resolved">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+    <% if @issues.length < 1 %>
+    <tr>
+      <td class="text-center" colspan="6">No unresolved issues!</td>
+    </tr>
+    <% end %>
+  </table>
+  <a class="btn btn-default btn-big" href="/issues/new">New Issue</a>
+</div> <!-- .row -->
+<hr>
+
+<!-- MY LEASE -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Lease</span></h4>
+	<br>
+	<% if !@unit.lease_img.file.nil? %>
+	<div class="col-sm-4 col-sm-offset-4">
+		<a href="/units/<%= current_user.unit_id %>/lease">
+
+			<div class="thumbnail one_unit">
+				<figure id="lease_img" class="centered">
+			  	<img class="img-responsive" src="<%= @unit.lease_img.url %>">
+			  </figure>
+			</div> <!-- .thumbnail -->
+		</a>
+	</div> 
+	<% else %>
+	<p>Your landlord hasn't uploaded your lease yet</p>
+	<% end %>
+</div> <!-- .row -->
+<hr>
+<% end %>
+
+<!-- MY PROFILE -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Profile</span></h4>
+	<br>
+	<div class="col-sm-3">
+    <p>
+    	<strong>Name:</strong>
+    	<%= @tenant.first_name %> <%= @tenant.last_name %>
+    </p>
+    <p>
+      <strong>Unit:</strong>
+      <% if @tenant.unit_id %>
+      <a href="/units/<%= @unit.id %>">
+      	<%= @property.street %> <%= @unit.name %>
+      </a>
+      <% end %>
+    </p>
+    <p>
+      <strong>Rent:</strong>
+      <% if @tenant.unit_id %>
+      $<%= @unit.rent %>
+      <% end %>
+    </p>
+   </div>
+   <div class="col-sm-3">
+    <p>
+      <strong>Payment Status:</strong>
+      <% if @tenant.late == true %>
+      <label class="label label-danger">Late</label>
+      <% else %>
+      <label class="label label-success">Current</label>
+      <% end %>
+    </p>
+   	<p>
+   		<strong>Email:</strong>
+   		<%= @tenant.email %>
+   	</p>
+   	<p>
+   		<strong>Phone:</strong>
+   		<%= @tenant.phone %>
+   	</p>
+   </div>
+   <div class="col-sm-3">
+   	<p>
+   		<strong>Birthdate:</strong>
+   		<%= @tenant.birthdate %>
+   	</p>
+   	<p>
+   		<strong>Income:</strong>
+   		$<%= @tenant.income %>
+   	</p>
+   	<p>
+   		<strong>Smoker:</strong>
+   		<%= @tenant.smoker %>
+   	</p>
+   </div>
+   <div class="col-sm-3">
+   	<p>
+   		<strong>Bio:</strong>
+   		<%= @tenant.bio %>
+   	</p>
+   </div> <!-- .col -->
+</div> <!-- .row -->
+   <a class="btn btn-default btn-big" href="/tenants/<%= @tenant.id %>/edit">Edit Profile</a>
+
+<hr>
+
+
+<!-- MY PAYMENT METHODS -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Payment Methods</span></h4>
+	<br>
+</div> <!-- .row -->
+<hr>
+<% end %>

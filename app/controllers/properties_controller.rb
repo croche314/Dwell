@@ -12,8 +12,17 @@ class PropertiesController < ApplicationController
   # GET /properties/1.json
   def show
     @units = Unit.where(property_id: params[:id])
+    @issues = @property.issues
+    @issues.sort_by{|e| -e[:urgency]}
     @num_units = @units.length
     @units_occupied = @units.where(occupied:true).length
+    
+    @monthly_income = 0
+    @units.each do |u|
+      if u.tenants.length > 0
+        @monthly_income += u.rent
+      end
+    end
   end
 
   # GET /properties/new
@@ -73,6 +82,6 @@ class PropertiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def property_params
-      params.require(:property).permit(:landlord_id, :type, :num_units, :units_occupied, :monthly_income, :street, :city, :state, :zip_code, :pets, :outdoor_space, :neighborhood)
+      params.require(:property).permit(:landlord_id, :building_type, :num_units, :units_occupied, :monthly_income, :street, :city, :state, :zip_code, :pets, :outdoor_space, :neighborhood)
     end
 end

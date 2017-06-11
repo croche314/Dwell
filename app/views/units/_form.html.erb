@@ -1,3 +1,4 @@
+<div class="centered-form">
 <%= form_for(@unit) do |f| %>
   <% if @unit.errors.any? %>
     <div id="error_explanation">
@@ -11,55 +12,61 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :rent %><br>
-    <%= f.number_field :rent %>
+    <%= f.number_field :rent, :class => 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :occupied %><br>
-    <%= f.check_box :occupied %>
+  <div class="form-group">
+    <%= f.label :lease_start %><br>
+    <%= f.date_select :lease_start, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :lease_end %><br>
-    <%= f.date_select :lease_end %>
+    <%= f.date_select :lease_end, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :bedrooms %><br>
-    <%= f.text_field :bedrooms %>
+    <%= f.text_field :bedrooms, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :bathrooms %><br>
-    <%= f.text_field :bathrooms %>
+    <%= f.text_field :bathrooms, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :washer_dryer %><br>
-    <%= f.text_field :washer_dryer %>
+    <%= f.text_field :washer_dryer, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :parking %><br>
-    <%= f.text_field :parking %>
+    <%= f.text_field :parking, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :floor %><br>
-    <%= f.text_field :floor %>
+    <%= f.text_field :floor, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :utilities %><br>
-    <%= f.text_field :utilities %>
+    <%= f.text_field :utilities, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :furnished %><br>
-    <%= f.check_box :furnished %>
+    <%= f.check_box :furnished, :class => 'form-control' %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :sq_feet %><br>
-    <%= f.text_field :sq_feet %>
+    <%= f.text_field :sq_feet, :class => 'form-control' %>
   </div>
+  <div id="lease_img" class="form-group">
+    <%= f.label 'Upload lease image' %><br>
+    <%= f.file_field :lease_img, :class => 'form-control' %>
+  </div>
+  <br>
   <div class="actions">
-    <%= f.submit "Update Unit", :class => 'btn btn-default label-main' %>
+    <%= f.submit "Update Unit", :class => 'btn btn-default label-main btn-block' %>
   </div>
 <% end %>
+</div>

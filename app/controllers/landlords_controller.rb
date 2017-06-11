@@ -71,6 +71,7 @@ class LandlordsController < ApplicationController
   def dashboard
     @my_properties = Property.where(landlord: current_user)
     @my_tenants = Tenant.where(landlord:current_user)
+    @my_units = Unit.where(landlord:current_user)
     @late_renters = @my_tenants.where(late:true)
   end
 

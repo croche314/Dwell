@@ -11,10 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601231250) do
+ActiveRecord::Schema.define(version: 20170609002721) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "issues", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.integer  "unit_id"
+    t.string   "category"
+    t.text     "description"
+    t.integer  "urgency"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "issues", ["tenant_id"], name: "index_issues_on_tenant_id", using: :btree
+  add_index "issues", ["unit_id"], name: "index_issues_on_unit_id", using: :btree
 
   create_table "landlords", force: :cascade do |t|
     t.string   "first_name"
@@ -86,11 +99,15 @@ ActiveRecord::Schema.define(version: 20170601231250) do
     t.integer  "landlord_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.string   "lease_img"
+    t.date     "lease_start"
   end
 
   add_index "units", ["landlord_id"], name: "index_units_on_landlord_id", using: :btree
   add_index "units", ["property_id"], name: "index_units_on_property_id", using: :btree
 
+  add_foreign_key "issues", "tenants"
+  add_foreign_key "issues", "units"
   add_foreign_key "properties", "landlords"
   add_foreign_key "tenants", "landlords"
   add_foreign_key "tenants", "properties"

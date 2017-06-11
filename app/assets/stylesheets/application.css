@@ -33,9 +33,31 @@
  	margin: 100px auto;
  }
 
+ .centered {
+ 	display: block;
+ 	margin: 0 auto;
+ }
+
  .centered-form {
  	width: 40%;
  	margin: 10px auto;
+ }
+
+ strong {
+ 	color: #777;
+ }
+
+ .btn-big {
+ 	display: block;
+ 	width: 50%;
+ 	margin: 20px auto;
+ }
+
+ .btn-centered-group {
+ 	display: block;
+ 	width: 50%;
+ 	margin: 25px auto;
+ 	text-align: center;
  }
 
  .heading_img {
@@ -182,6 +204,11 @@
  #sign_in_page form {
  	width: 40%;
  	margin: 50px auto;
+ }
+
+ #lease_img {
+ 	margin-top: 50px;
+ 	width: 80%;
  }
 
  /* The switch - the box around the slider */

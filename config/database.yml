@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: PropertyManager_production
-  username: PropertyManager
+  username: ubuntu
   password: <%= ENV['PROPERTYMANAGER_DATABASE_PASSWORD'] %>

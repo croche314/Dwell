@@ -19,7 +19,7 @@
 						<p><%= p.city %>, <%= p.state %>&nbsp;<%= p.zip_code %></p>
 						<p>Neighborhood: <%= p.neighborhood %></p>
 						<% if p.num_units != p.units_occupied %>
-						<label class="label label-danger">Vacancy</label>
+						<label class="label label-warning">Vacancy</label>
 						<% end %>
 						<% if !Tenant.where(property:p,late: true).empty? %>
 						<label class="label label-danger">Late</label>
@@ -92,14 +92,7 @@
 			<% end %>
 		</tbody>
 	</table>
-	<a class="btn btn-default">Add a Tenant</a>
-</div>
-<hr>
-
-<!-- My Leases -->
-<div class="row thumbnail-row">
-	<h4 class="sub_heading"><span>My Leases</span></h4>
-	<br>
+	<a class="btn btn-default btn-big label-main">Add a Tenant</a>
 </div>
 <hr>
 

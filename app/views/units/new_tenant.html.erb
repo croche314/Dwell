@@ -5,12 +5,24 @@
 <h1 class="page_heading">
 	Add Tenant
 	<br>
-	<span class="small"><%= @unit.property.street %> <%= @unit.name %></span>
+	<span class="small">
+    <a href="/units/<%= @unit.id %>">
+    <%= @unit.property.street %> <%= @unit.name %>
+    </a>
+  </span>
 </h1>
 
 <hr>
+
 <div class="row">
   <h4 class="sub_heading">Tenants</h4>
+  <form class="centered-form" action="/units/<%= @unit.id %>/new_tenant" method="get">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <div class="form-group">
+      <input class="form-control" type="text" name="query" placeholder="search by name, email...">
+      <input class="btn btn-default" type="submit" value="Search">
+    </div>
+  </form>
   <table class="table table-striped">
   	<tr>
   		<th>Name</th>
@@ -20,7 +32,9 @@
   	</tr>
   	<% @all_tenants.each do |t| %>
   	<tr>
-  		<td><%= t.first_name %> <%= t.last_name %></td>
+  		<td>
+        <a href="/tenants/<%= t.id %>"><%= t.first_name %> <%= t.last_name %></a>
+      </td>
   		<td><%= t.email %></td>
   		<td><%= t.bio %></td>
   		<td>

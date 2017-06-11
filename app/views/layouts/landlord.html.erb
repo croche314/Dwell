@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Dwell | <%= yield :title %></title>
+  <link rel="shortcut icon" href="<%= image_path('generic-home-teal.png') %>" type="image/x-icon" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -36,12 +37,12 @@
 			<div class="row">
 				<nav>
 					<ul class="list-unstyled">
+						<% if session[:user_type] == 'landlord' %>
 						<li><a href="/landlords/dashboard">Dashboard</a></li>
-						<li><a href="#">Properties</a></li>
-						<li><a href="#">Leases</a></li>
-						<li><a href="#">Listings</a></li>
-						<li><a href="#">Screening</a></li>
-						<li><a href="#">Banks &amp; Cards</a></li>
+						<% else %>
+						<li><a href="/tenants/dashboard">Dashboard</a></li>
+						<% end %>
+						<li><a href="/logout">Logout</a></li>
 					</ul>
 				</nav>
 			</div> <!-- .row -->

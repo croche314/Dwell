@@ -19,18 +19,6 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<label>Number of units</label>
-		<input class="form-control" type="number" name="property[num_units]" value="<%= @property.num_units %>">
-	</div>
-	<div class="form-group">
-		<label>Units Occupied</label>
-		<input class="form-control" type="number" name="property[units_occupied]"  value="<%= @property.units_occupied %>">
-	</div>
-	<div class="form-group">
-		<label>Monthly Income</label>
-		<input class="form-control" type="number" name="property[monthly_income]"  value="<%= @property.monthly_income %>">
-	</div>
-	<div class="form-group">
 		<label>Street</label>
 		<input class="form-control" type="text" name="property[street]" value="<%= @property.street %>">
 	</div>
@@ -53,8 +41,7 @@
 	  <input class="form-control" type="checkbox" name="property[pets]" value="<%= @property.pets %>">
 	  <div class="slider round"></div>
 	</div>
-	
-</label>
+	</label>
 	<div class="form-group">
 		<label>Outdoor space</label>
 		<input class="form-control" type="text" name="property[outdoor_space]" value="<%= @property.outdoor_space %>">

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  # LOGIN
   get 'login' => 'login#index'
   post 'login/register' => 'login#create'
   get 'login/sign_in' => 'login#sign_in'
@@ -7,18 +9,29 @@ Rails.application.routes.draw do
   get 'landlords/dashboard' => 'landlords#dashboard'
   root 'login#index'
 
+  # LANDLORD
   get 'units/:id/new' => 'units#new'
   get 'units/:id/new_tenant' => 'units#new_tenant'
+  get 'units/:id/new_tenant/:query' => 'units#new_tenant'
   get 'units/:id/add_tenant/:tenant_id' => 'units#add_tenant'
   get 'units/:id/remove_tenant/:tenant_id' => 'units#remove_tenant'
-  get 'units/:id/delete' => 'units#delete_unit'
+  delete 'units/:id/remove_tenant/:tenant_id' => 'units#remove_tenant'
+  post '/units/:id' => 'units#show'
+  post '/units/:id/edit' => 'units#edit'
+  get 'units/:id/lease' => 'units#show_lease'
+  post '/units/:id/lease' => 'units#show_lease' 
+  delete '/units/:id/lease' => 'units#remove_lease_img'
+  delete 'units/:id' => 'units#delete_unit'
 
-  get 'tenant_dashboard/:id' => 'tenants#dashboard'
+  # TENANT
+  get 'tenants/dashboard' => 'tenants#dashboard'
 
+  resources :issues
   resources :tenants
   resources :units
   resources :properties
   resources :landlords
+  resources :leases
   #get '*path' => 'application#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

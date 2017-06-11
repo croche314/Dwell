@@ -23,7 +23,7 @@ class LoginController < ApplicationController
 				flash[:success] = ["New Profile Created! Welcome!"]
 				session[:user_id] = landlord.id
 				session[:user_type] = 'landlord'
-				redirect_to properties_path and return
+				redirect_to landlords_dashboard_path and return
 			end
 		end
 
@@ -42,7 +42,7 @@ class LoginController < ApplicationController
 				flash[:success] = ["New Profile Created! Welcome!"]
 				session[:user_id] = tenant.id
 				session[:user_type] = 'tenant'
-				redirect_to "/tenants/"+tenant.id.to_s
+				redirect_to "/tenants/tenant_dashboard"
 			end
 		else
 			flash[:info] = ["Please select a valid user type"]
@@ -76,7 +76,7 @@ class LoginController < ApplicationController
 				session[:user_type] = "tenant"
 				puts session[:user_type]
 				flash[:success] = ["Welcome Back #{current_user.first_name}!"]
-				redirect_to "/tenant_dashboard/#{tenant.id}"
+				redirect_to "/tenants/dashboard"
 			else
 				flash[:warning] = ["Invalid credentials"]
 				redirect_to "/login/sign_in"

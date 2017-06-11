@@ -11,6 +11,7 @@ class TenantsController < ApplicationController
   # GET /tenants/1
   # GET /tenants/1.json
   def show
+    @issues = Issue.where(tenant: @tenant)
   end
 
   # GET /tenants/new
@@ -29,8 +30,7 @@ class TenantsController < ApplicationController
 
     respond_to do |format|
       if @tenant.save
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully created.' }
-        format.json { render :show, status: :created, location: @tenant }
+        redirect_to tenants_dashboard_path
       else
         format.html { render :new }
         format.json { render json: @tenant.errors, status: :unprocessable_entity }
@@ -41,14 +41,10 @@ class TenantsController < ApplicationController
   # PATCH/PUT /tenants/1
   # PATCH/PUT /tenants/1.json
   def update
-    respond_to do |format|
-      if @tenant.update(tenant_params)
-        format.html { redirect_to @tenant, notice: 'Tenant was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tenant }
-      else
-        format.html { render :edit }
-        format.json { render json: @tenant.errors, status: :unprocessable_entity }
-      end
+    if @tenant.update(tenant_params)
+     redirect_to tenants_dashboard_path
+    else
+      render :edit
     end
   end
 
@@ -63,13 +59,18 @@ class TenantsController < ApplicationController
   end
 
   def dashboard
-    @tenant = Tenant.find(params[:id])
+    @tenant = Tenant.find(current_user.id)
+    if @tenant.unit_id
+      @unit = Unit.find(@tenant.unit_id)
+      @property = Property.find(@unit.property_id)
+      @issues = Issue.where(tenant: @tenant).where(unit: @unit)
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tenant
-      @tenant = Tenant.find(params[:id])
+      @tenant = Tenant.find(current_user.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

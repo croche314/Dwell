@@ -19,7 +19,7 @@
   </div> <!-- .col -->
   <div class="col-sm-4">
     <p><strong>Number of Units: </strong><%= @num_units %></p>
-    <p><strong>Monthly Income:</strong> $<%= @property.monthly_income %></p>
+    <p><strong>Monthly Income:</strong> $<%= @monthly_income %></p>
     <p><strong>Units Occupied:</strong> <%= @units_occupied %></p>
     <p><strong>Units Vacant:</strong> <%= @num_units - @units_occupied %></p>
   </div> <!-- .col -->
@@ -32,7 +32,7 @@
 </div> <!-- .row -->
 <% if @property.landlord == current_user %>
     <br>
-    <a class="btn btn-default" href="/properties/<%= @property.id %>/edit">Edit Property</a>
+    <a class="btn btn-default btn-big" href="/properties/<%= @property.id %>/edit">Edit Property</a>
   <% end %>
 <hr>
 
@@ -41,6 +41,7 @@
   <h4 class="sub_heading">Units</h4>
   <% @units.each do |u| %>
     <div class="col-sm-4">
+      <a href="/units/<%= u.id %>">
         <div class="thumbnail one_unit">
           <br>
           <img src="<%= image_path('generic-door.png') %>" alt="generic home">
@@ -50,11 +51,11 @@
             <p>Monthly rent: $<%= u.rent %></p>
             <p>Tenants:
               <% u.tenants.each do |t| %>
-              &nbsp;<a href="/tenants/<%= t.id %>"><%= t.first_name %> <%= t.last_name %></a>&nbsp;
+              &nbsp;<%= t.first_name %> <%= t.last_name %>&nbsp;
               <% end %>
             </p>
             <% if !u.occupied %>
-              <label class="label label-danger">Vacant</label>
+              <label class="label label-warning">Vacant</label>
             <% else %>
             <label class="label label-primary">Occupied</label>
                 <% if u.tenants.where(late: true).length > 0 %>
@@ -63,20 +64,99 @@
                <label class="label label-success">Current</label>
                <% end %>
             <% end %>
-            <a class="btn btn-default btn-block label-main" href="/units/<%= u.id %>">Unit Details</a>
-            <a class="btn btn-default btn-block label-main" href="/units/<%= u.id %>/delete">Delete Unit</a>
+            <% if !u.lease_img.file.nil? %>
+            <form action="/units/<%= u.id %>/lease" method="post">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input class="btn btn-default btn-block label-main" type="submit" value="View Lease">
+            </form>
+            <% else %>
+            <form action="/units/<%= u.id %>/edit/#lease_img" method="post">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input class="btn btn-default btn-block label-main" type="submit" value="Add Lease Image">
+            </form>
+
+            <% end %>
+            <form action="/units/<%= u.id %>" method="post">
+              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+              <input type="hidden" name="_method" value="delete">
+              <input class="btn btn-default btn-block label-main" type="submit" value="Delete Unit">
+            </form>
           </div> <!-- .caption -->
         </div> <!-- .thumbnail -->
-      
+      </a>
     </div> 
   <% end %>
   <br><br>
 </div> <!-- .row -->
-  <a class="btn btn-default" href="/units/<%= @property.id %>/new">New Unit</a>
+  <a class="btn btn-default btn-big" href="/units/<%= @property.id %>/new">New Unit</a>
 
 <hr>
 
+<!-- ISSUES -->
 <div class="row thumbnail-row">
-  <h4 class="sub_heading">Applications</h4>
+  <h4 class="sub_heading">Issues</h4>
+
+  <!-- Issue urgency examples -->
+  <!--<label class="label label-info">Just so you know...</label>
+  <label class="label label-success">Not a huge deal</label>    
+  <label class="label label-default">Please address this ASAP</label>
+  <label class="label label-warning">Immediate action required</label>
+  <label class="label label-danger">Near-emergency</label>-->
+
+  <!-- Issues Table -->
+  <table class="table table-striped table-responsive">
+    <tr>
+      <th>Date</th>
+      <th>Tenant</th>
+      <th>Unit</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Urgency</th>
+      <th>Actions</th>
+    </tr>
+    <% @issues.each do |i| %>
+    <tr>
+      <td><%= i.created_at.strftime("%c") %></td>
+      <td>
+        <a href="/tenants/<%= i.tenant_id %>">
+          <%= i.tenant.first_name %> <%= i.tenant.last_name %>
+        </a>
+      </td>
+      <td>
+        <a href="/units/<%= i.unit_id %>">
+          <%= i.unit.property.street %> <%= i.unit.name %>
+        </a>
+      </td>
+      <td><%= i.category %></td>
+      <td><%= i.description %></td>
+      <td>
+        <% case i.urgency %>
+        <% when 1 %>
+          <label class="label label-info">Just so you know...</label>
+        <% when 2 %>
+          <label class="label label-success">Not a huge deal</label>
+        <% when 3 %>
+          <label class="label label-default">Please address this ASAP</label>
+        <% when 4 %>
+          <label class="label label-warning">Immediate action required</label>
+        <% when 5 %>
+          <label class="label label-danger">Near-emergency</label>
+        <% end %>
+      </td>
+      <td>
+        <form action="/issues/<%= i.id %>" method="post">
+          <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+          <input type="hidden" name="_method" value="delete">
+          <input class="btn btn-default" type="submit" value="Resolved">
+        </form>
+      </td>
+    </tr>
+    <% end %>
+    <% if @issues.length < 1 %>
+    <tr>
+      <td class="text-center" colspan="6">No unresolved issues!</td>
+    </tr>
+    <% end %>
+  </table>
 </div> <!-- .row -->
 <% end %>
