@@ -35,20 +35,27 @@
 		<input class="form-control" type="text" name="property[zip_code]" value="<%= @property.zip_code %>">
 	</div>
 	<div class="form-group">
-	  <label>Pets Allowed</label>
+	  <label>Pets Allowed?</label>
 		<br>
+		<input type="hidden" name="property[pets]" value="false">
 		<label class="switch">
-	  <input class="form-control" type="checkbox" name="property[pets]" value="<%= @property.pets %>">
+	  <input class="form-control" type="checkbox" name="property[pets]" value="true"
+	  <% if @property.pets == true %>
+	  checked
+	  <% end %>
+	  >
 	  <div class="slider round"></div>
 	</div>
 	</label>
 	<div class="form-group">
-		<label>Outdoor space</label>
-		<input class="form-control" type="text" name="property[outdoor_space]" value="<%= @property.outdoor_space %>">
-	</div>
-	<div class="form-group">
 		<label>Neighborhood</label>
 		<input class="form-control" type="text" name="property[neighborhood]" value="<%= @property.neighborhood %>">
+	</div>
+	<div class="form-group">
+		<label>Property Image</label>
+			<%= image_tag(@property.img, alt: @property.street) %>
+			<br>
+		<input class="form-control" type="file" name="property[img]">
 	</div>
 	<div class="form-group">
 		<input class="btn btn-default btn-block label-main" type="submit" value="Update Property">
