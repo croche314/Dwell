@@ -5,6 +5,7 @@
 <hr>
 <h1 class="page_heading"><span>Landlord Dashboard</span></h1>
 <hr>
+<!-- MY PROPERTIES -->
 <div class="row thumbnail-row">
 	<h4 class="sub_heading"><span>My Properties</span></h4>
 	<br>
@@ -18,7 +19,9 @@
 						<p class="street"><%= p.street %></p>
 						<p><%= p.city %>, <%= p.state %>&nbsp;<%= p.zip_code %></p>
 						<p>Neighborhood: <%= p.neighborhood %></p>
-						<% if p.num_units != p.units_occupied %>
+						<% @num_units = Unit.where(property: p).length %>
+						<% @units_occupied = Unit.where(property: p, occupied: true).length %>
+						<% if @num_units != @units_occupied %>
 						<label class="label label-warning">Vacancy</label>
 						<% end %>
 						<% if !Tenant.where(property:p,late: true).empty? %>
@@ -48,7 +51,7 @@
 </div> <!-- .row .thumbnail-row -->
 <hr>
 
-<!-- My Tenants -->
+<!-- MY TENANTS -->
 <div class="row thumbnail-row">
 	<h4 class="sub_heading"><span>My Tenants</span></h4>
 	<br>
@@ -96,11 +99,38 @@
 </div>
 <hr>
 
-<!-- My Payments -->
-<div class="row thumbnail-row">
-	<h4 class="sub_heading"><span>My Payments</span></h4>
+<!-- MY ACCOUNTS -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Accounts</span></h4>
 	<br>
-</div>
+  <table class="table table-striped table-responsive">
+    <tr>
+      <th>Nickname</th>
+      <th>Type</th>
+      <th>Acct. #</th>
+      <th>Exp.</th>
+      <th>Primary</th>
+      <th>Actions</th>
+    </tr>
+    <% @accounts.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%= a.account_type %></td>
+      <td>...<%= a.account_number.slice(12..16) %></td>
+      <td><%= a.expiration %></td>
+      <% if a.primary == true %>
+        <td><label class="label label-primary">&#x2713;</label></td>
+      <% else %>
+      <td></td>
+      <% end %>
+      <td>
+        <a class="btn btn-default" href="/accounts/<%= a.id %>/edit">Edit</a>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div> <!-- .row -->
+<a class="btn btn-default btn-big" href="/accounts/new">New Account</a>
 <hr>
 
 

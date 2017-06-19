@@ -45,6 +45,16 @@
 
  strong {
  	color: #777;
+ 	font-weight: 600;
+ }
+
+ .trademark {
+ 	font-size: 14px;
+ 	vertical-align: super;
+ }
+
+ label {
+ 	font-weight: normal;
  }
 
  .btn-big {
@@ -64,10 +74,15 @@
  	width: 150px;
  }
 
+ #flash_messages h4 {
+ 	font-weight: 400;
+ }
+
  .page_heading {
  	display: inline-block;
- 	font-family: 'Rubik';
- 	font-weight: 300;
+ 	font-family: 'Open Sans';
+ 	font-weight: 600;
+ 	font-variant: small-caps;
  	margin: 0;
  	padding-left: 50px;
  	color: #0FA3B1;
@@ -135,7 +150,7 @@
 
 .side_nav ul {
 	margin-top: 50px;
-	padding-left: 40px;
+	padding-left: 20px;
 }
 
 .side_nav li {
@@ -145,12 +160,23 @@
  .side_nav a {
  	color: #fff;
  	font-family: 'Open Sans';
- 	font-weight: 700;
- 	text-transform: uppercase;
+ 	font-weight: 400;
+ 	font-variant: small-caps;
  }
 
  .side_nav a:hover {
  	background-color: none;
+ 	border-bottom: 2px solid #fff;
+ 	text-decoration: none;
+ }
+
+ .side_nav .submenu {
+ 	padding-left: 15px;
+ }
+
+ .side_nav .submenu a {
+ 	text-transform: none;
+ 	font-size: 10px;
  }
 
  #home .main_content {
@@ -209,6 +235,11 @@
  #lease_img {
  	margin-top: 50px;
  	width: 80%;
+ }
+
+ .my_landlord img {
+ 	width: 100px;
+ 	margin: 25px auto;
  }
 
  /* The switch - the box around the slider */

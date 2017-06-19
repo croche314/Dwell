@@ -12,9 +12,17 @@
     </div>
   <% end %>
 
+  <input type="hidden" name="unit[property_id]" value="<%= params[:id] %>">
+  <input type="hidden" name="unit[occupied]" value="false">
+
+
   <div class="form-group">
     <%= f.label :name %><br>
     <%= f.text_field :name, :class => 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :floor %><br>
+    <%= f.text_field :floor, :class => 'form-control' %>
   </div>
   <div class="form-group">
     <%= f.label :rent %><br>
@@ -38,27 +46,44 @@
   </div>
   <div class="form-group">
     <%= f.label :washer_dryer %><br>
-    <%= f.text_field :washer_dryer, :class => 'form-control' %>
+    <%= f.select(:washer_dryer) do %>
+      <% [['In unit','In unit'], ['In building','In building'], ['None','None']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <%= f.label :parking %><br>
-    <%= f.text_field :parking, :class => 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= f.label :floor %><br>
-    <%= f.text_field :floor, :class => 'form-control' %>
+    <%= f.select(:parking) do %>
+      <% [['One space included','One space included'], ['Two spaces included','Two spaces included'], ['Street','Street']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
     <%= f.label :utilities %><br>
-    <%= f.text_field :utilities, :class => 'form-control' %>
+    <%= f.select(:utilities) do %>
+      <% [['Water included','Water included'], ['Gas included','Gas included'], ['Electricity included','Electricity included'], ['Water and gas included','Water and gas included'], ['Water and electricity included','Water and electricity included'],['Gas and electricity included','Gas and electricity included'],['Water, gas, and electricity included','Water, gas, and electricity included']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
   <div class="form-group">
-    <%= f.label :furnished %><br>
-    <%= f.check_box :furnished, :class => 'form-control' %>
+    <label>Furnished?</label>
+    <br>
+    <input type="hidden" name="unit[furnished]" value="false">
+    <label class="switch">
+    <input class="form-control" type="checkbox" name="unit[furnished]" value="true"
+    <% if @unit.furnished == true %>
+    checked
+    <% end %>
+    >
+    <div class="slider round"></div>
   </div>
+  </label>
   <div class="form-group">
     <%= f.label :sq_feet %><br>
-    <%= f.text_field :sq_feet, :class => 'form-control' %>
+    <%= f.number_field :sq_feet, :class => 'form-control' %>
   </div>
   <div id="lease_img" class="form-group">
     <%= f.label 'Upload lease image' %><br>
@@ -66,7 +91,7 @@
   </div>
   <br>
   <div class="actions">
-    <%= f.submit "Update Unit", :class => 'btn btn-default label-main btn-block' %>
+    <%= f.submit :class => 'btn btn-default label-main btn-block' %>
   </div>
 <% end %>
 </div>

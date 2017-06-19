@@ -9,20 +9,22 @@
 	</h1>
 <hr>
 
-<!-- PROPERTY DETAILS -->
+<!-- LEASE -->
 <div class="row">
   <figure id="lease_img" class="centered">
   	<img class="img-responsive" src="<%= @unit.lease_img.url %>">
   </figure>
   <br>
-  <div class="btn-centered-group">
-	  <a class="btn btn-default btn-big label-main" href="/units/<%= @unit.id %>/edit#lease_img">Change Lease</a>
-		<form class="inline" action="/units/<%= @unit.id %>/lease" method="post">
-			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-			<input type="hidden" name="_method" value="delete">
-			<input class="btn btn-default btn-big label-main" type="submit" value="Remove Lease">
-		</form>
-	</div>
+  <% if session[:user_type] == 'landlord' and @unit.property.landlord == current_user %>
+	  <div class="btn-centered-group">
+		  <a class="btn btn-default btn-big label-main" href="/units/<%= @unit.id %>/edit#lease_img">Change Lease</a>
+			<form class="inline" action="/units/<%= @unit.id %>/lease" method="post">
+				<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				<input type="hidden" name="_method" value="delete">
+				<input class="btn btn-default btn-big label-main" type="submit" value="Remove Lease">
+			</form>
+		</div>
+	<% end %>
 	<br>
 </div>
 <% end %>

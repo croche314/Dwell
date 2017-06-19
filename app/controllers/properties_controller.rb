@@ -69,7 +69,7 @@ class PropertiesController < ApplicationController
   def destroy
     @property.destroy
     respond_to do |format|
-      format.html { redirect_to properties_url, notice: 'Property was successfully destroyed.' }
+      format.html { redirect_to landlords_dashboard_url, notice: 'Property was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

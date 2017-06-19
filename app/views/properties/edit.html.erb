@@ -4,61 +4,8 @@
 <hr>
 <h1 class="page_heading"><span>Edit Property</span></h1>
 <hr>
-<form id="edit_property_form" class="centered-form" action="/properties/<%= @property.id %>/" method="post">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<input type="hidden" name="_method" value="put">
-	<input type="hidden" name="property[landlord_id]" value="<%= current_user.id %>">
-	<div class="form-group">
-		<label>Property Type</label>
-		<select class="form-control" name="property[building_type]" value="<%= @property.building_type %>">
-			<option>Select...</option>
-			<option value="Apartment" selected>Apartment</option>
-			<option value="Single Family">Single Family Home</option>
-			<option value="duplex_triplex_townhouse">Duplex/Triplex/Townhouse</option>
-			<option value="Dormitory">Dormitory</option>
-		</select>
-	</div>
-	<div class="form-group">
-		<label>Street</label>
-		<input class="form-control" type="text" name="property[street]" value="<%= @property.street %>">
-	</div>
-	<div class="form-group">
-		<label>City</label>
-		<input class="form-control" type="text" name="property[city]"  value="<%= @property.city %>">
-	</div>
-	<div class="form-group">
-		<label>State</label>
-		<input class="form-control" type="text" name="property[state]" value="<%= @property.state %>">
-	</div>
-	<div class="form-group">
-		<label>Zip Code</label>
-		<input class="form-control" type="text" name="property[zip_code]" value="<%= @property.zip_code %>">
-	</div>
-	<div class="form-group">
-	  <label>Pets Allowed?</label>
-		<br>
-		<input type="hidden" name="property[pets]" value="false">
-		<label class="switch">
-	  <input class="form-control" type="checkbox" name="property[pets]" value="true"
-	  <% if @property.pets == true %>
-	  checked
-	  <% end %>
-	  >
-	  <div class="slider round"></div>
-	</div>
-	</label>
-	<div class="form-group">
-		<label>Neighborhood</label>
-		<input class="form-control" type="text" name="property[neighborhood]" value="<%= @property.neighborhood %>">
-	</div>
-	<div class="form-group">
-		<label>Property Image</label>
-			<%= image_tag(@property.img, alt: @property.street) %>
-			<br>
-		<input class="form-control" type="file" name="property[img]">
-	</div>
-	<div class="form-group">
-		<input class="btn btn-default btn-block label-main" type="submit" value="Update Property">
-	</div>
-</form>
+<div class="centered-form">
+<%= render 'form' %>
+</div>
+
 <% end %>

@@ -1,3 +1,4 @@
+<div class="centered-form">
 <%= form_for(@issue) do |f| %>
   <% if @issue.errors.any? %>
     <div id="error_explanation">
@@ -11,27 +12,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :tenant_id %><br>
-    <%= f.text_field :tenant_id %>
-  </div>
-  <div class="field">
-    <%= f.label :unit_id %><br>
-    <%= f.text_field :unit_id %>
-  </div>
-  <div class="field">
+  <p class="small">If this is an emergency, call your landlord at <%= @landlord.phone %> or call 911</p>
+
+  <input type="hidden" name="issue[tenant_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="issue[unit_id]" value="<%= current_user.unit_id %>">
+
+  <div class="field form-group">
     <%= f.label :category %><br>
-    <%= f.text_field :category %>
+    <%= f.select(:category) do %>
+      <% [['Maintenance','Maintenance'], ['Power failure', 'Power failure'], ['Plumbing','Plumbing'], ['Heating/Air Conditioning', 'Heating/Air Conditioning'], ['Landscaping','Landscaping'], ['Neighbors','Neighbors'], ['Rent/Payments', 'Rent/Payments'], ['Security','Security'], ['Other','Other']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :urgency %><br>
-    <%= f.number_field :urgency %>
+    <%= f.select(:urgency) do %>
+      <% [['Just so you know...','1'], ['Not a huge deal', '2'], ['Please address this ASAP','3'], ['Immediate action required','4'], ['Near-emergency','5']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br>
+  
+  <div>
+    <%= f.submit class: 'btn btn-default btn-block label-main' %>
   </div>
 <% end %>
+</div>

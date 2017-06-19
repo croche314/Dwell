@@ -7,7 +7,7 @@
 <a href="/properties/<%= @unit.property.id %>">
   <%= image_tag(@unit.property.img, alt: @unit.property.street, class: 'heading_img img-thumbnail') %>
 </a>
-<h1 class="page_heading"><%= @unit.name %> 
+<h1 class="page_heading"><%= @unit.name %>
 <% if @late == true %>
 <label class="label label-danger label-lg">Late</label>
 <% elsif @late == false %>
@@ -99,7 +99,15 @@
   </div>
   <hr>
 </div> <!-- .row -->
+<% if session[:user_type] == 'landlord' and @unit.property.landlord_id = current_user.id %>
 <a class="btn btn-default btn-big" href="/units/<%= @unit.id %>/edit">Edit Unit</a>
+<form action="/units/<%= @unit.id %>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+  <input type="hidden" name="_method" value="delete">
+  <input class="btn btn-default btn-big" type="submit" value="Delete Unit">
+</form>
+<% end %>
+
 <% if !@unit.lease_img.file.nil? %>
 <a class="btn btn-default btn-big" href="/units/<%= @unit.id %>/lease">View Lease</a>
 <% end %>
@@ -138,18 +146,24 @@
               <input class="btn btn-default btn-block label-main" type="submit" value="Add Lease">
             </form>
             <% end %>
-            <form action="/units/<%= @unit.id %>/remove_tenant/<%= t.id %>" method="post">
-              <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-              <input type="hidden" name="_method" value="delete">
-              <input class="btn btn-default btn-block label-main" type="submit" value="Remove Tenant">
-            </form>
+
+            <% if session[:user_type] == 'landlord' and @unit.property.landlord_id = current_user.id %>
+              <form action="/units/<%= @unit.id %>/remove_tenant/<%= t.id %>" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                <input type="hidden" name="_method" value="delete">
+                <input class="btn btn-default btn-block label-main" type="submit" value="Remove Tenant">
+              </form>
+            <% end %>
           </div> <!-- .caption -->
         </div> <!-- .thumbnail -->
       </a>
     </div> 
   <% end %>
 </div> <!-- .row -->
-<a class="btn btn-default btn-big" href="/units/<%= @unit.id %>/new_tenant">Add Tenant</a>
+
+  <% if session[:user_type] == 'landlord' and @unit.property.landlord_id = current_user.id %>
+  <a class="btn btn-default btn-big" href="/units/<%= @unit.id %>/new_tenant">Add Tenant</a>
+<% end %>
 
 <hr>
 
@@ -212,6 +226,6 @@
     <% end %>
   </table>
 </div> <!-- .row -->
-
+<hr>
 
 <% end %>

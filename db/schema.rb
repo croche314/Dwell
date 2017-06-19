@@ -11,10 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170618125753) do
+ActiveRecord::Schema.define(version: 20170618190719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "tenant_id"
+    t.integer  "landlord_id"
+    t.string   "name"
+    t.boolean  "primary"
+    t.string   "account_type"
+    t.string   "card_type"
+    t.string   "account_number"
+    t.date     "expiration"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "routing_number"
+  end
+
+  add_index "accounts", ["landlord_id"], name: "index_accounts_on_landlord_id", using: :btree
+  add_index "accounts", ["tenant_id"], name: "index_accounts_on_tenant_id", using: :btree
 
   create_table "issues", force: :cascade do |t|
     t.integer  "tenant_id"
@@ -106,6 +123,8 @@ ActiveRecord::Schema.define(version: 20170618125753) do
   add_index "units", ["landlord_id"], name: "index_units_on_landlord_id", using: :btree
   add_index "units", ["property_id"], name: "index_units_on_property_id", using: :btree
 
+  add_foreign_key "accounts", "landlords"
+  add_foreign_key "accounts", "tenants"
   add_foreign_key "issues", "tenants"
   add_foreign_key "issues", "units"
   add_foreign_key "properties", "landlords"

@@ -3,7 +3,7 @@
 <% content_for :main_content do %>
 
 <hr>
-<h1 class="page_heading"><span><%= current_user.first_name %>'s Dashboard</span></h1>
+<h1 class="page_heading"><span><%= current_user.first_name %>'s Tenant Dashboard</span></h1>
 <hr>
 
 <!-- MY UNIT -->
@@ -181,18 +181,55 @@
 
 <hr>
 
-<!-- MY ISSUES -->
-<div class="row">
-	<h4 class="sub_heading"><span>My Issues</span></h4>
-	<br>
-</div> <!-- .row -->
+<!-- MY LANDLORD -->
+<div class="row thumbnail-row">
+  <h4 class="sub_heading">My Landlord</h4>
+  <div class="col-sm-4">
+    <div class="thumbnail my_landlord">
+      <img src="<%= image_path('generic-user.png') %>" alt="generic user">
+      <hr>
+      <div class="caption">
+        <p class="street"><%= @my_landlord.first_name %> <%= @my_landlord.last_name %></p>
+        <p><%= @my_landlord.phone %></p>
+        <p><%= @my_landlord.email %></p>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
 <hr>
 
-
-<!-- MY PAYMENT METHODS -->
+<!-- MY ACCOUNTS -->
 <div class="row">
-	<h4 class="sub_heading"><span>My Payment Methods</span></h4>
+	<h4 class="sub_heading"><span>My Accounts</span></h4>
 	<br>
+  <table class="table table-striped table-responsive">
+    <tr>
+      <th>Nickname</th>
+      <th>Type</th>
+      <th>Acct. #</th>
+      <th>Exp.</th>
+      <th>Primary</th>
+      <th>Actions</th>
+    </tr>
+    <% @accounts.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+      <td><%= a.account_type %></td>
+      <td>...<%= a.account_number.slice(12..16) %></td>
+      <td><%= a.expiration %></td>
+      <% if a.primary == true %>
+        <td><label class="label label-primary">&#x2713;</label></td>
+      <% else %>
+      <td></td>
+      <% end %>
+      <td>
+        <a class="btn btn-default" href="/accounts/<%= a.id %>/edit">Edit</a>
+      </td>
+    </tr>
+    <% end %>
+  </table>
 </div> <!-- .row -->
+<a class="btn btn-default btn-big" href="/accounts/new">New Account</a>
 <hr>
 <% end %>

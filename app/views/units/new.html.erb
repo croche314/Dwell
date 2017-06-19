@@ -8,69 +8,7 @@ New Unit
 <a href="/properties/<%= @property.id %>" class="small"><%= @property.street %></a>
 </h1>
 <hr>
-<form id="new_unit_form" class="centered-form" action="/units" method="post">
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<input type="hidden" name="unit[landlord_id]" value="<%= current_user.id %>">
-	<input type="hidden" name="unit[property_id]" value="<%= params[:id] %>">
-	<div class="form-group">
-		<label>Property</label>
-		<input class="form-control" type="text" value="<%= Property.find(params[:id]).street %>" readonly>
-	</div>
-	<div class="form-group">
-		<label>Name</label>
-		<input class="form-control" type="text" name="unit[name]" placeholder="Unit/Floor/Number">
-	</div>
-	<div class="form-group">
-		<label>Lease Start</label>
-		<input class="form-control" type="date" name="unit[lease_start]">
-	</div>
-	<div class="form-group">
-		<label>Lease End</label>
-		<input class="form-control" type="date" name="unit[lease_end]">
-	</div>
-	<div class="form-group">
-		<label>Monthly Rent</label>
-		<input class="form-control" type="number" name="unit[rent]">
-	</div>
-	<div class="form-group">
-		<label>Bedrooms</label>
-		<input class="form-control" type="number" name="unit[bedrooms]">
-	</div>
-	<div class="form-group">
-		<label>Bathrooms</label>
-		<input class="form-control" type="number" name="unit[bathrooms]">
-	</div>
-	<div class="form-group">
-		<label>Washer/Dryer</label>
-		<select class="form-control" name="unit[washer_dryer]">
-			<option>Select...</option>
-			<option value="in unit">In Unit</option>
-			<option value="in building">In Building</option>
-			<option value="none">None</option>
-		</select>
-	</div>
-	<div class="form-group">
-		<label>Parking</label>
-		<input class="form-control" type="text" name="unit[parking]">
-	</div>
-	<div class="form-group">
-		<label>Floor</label>
-		<input class="form-control" type="number" name="unit[floor]">
-	</div>
-	<div class="form-group">
-		<label>Utilities</label>
-		<input class="form-control" type="text" name="unit[utilities]">
-	</div>
-	<div class="form-group">
-		<input type="checkbox" name="unit[furnished]">&nbsp;
-		<label>Furnished</label>
-	</div>
-	<div class="form-group">
-		<label>Square Feet</label>
-		<input class="form-control" type="number" name="unit[sq_feet]">
-	</div>
-	<div class="form-group">
-		<input class="btn btn-default btn-block label-main" type="submit" value="Create Unit">
-	</div>
-</form>
+
+<%= render 'form' %>
+
 <% end %>

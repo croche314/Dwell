@@ -6,7 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,600|Rubik:300,400,700|Biryani:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,400,600|Rubik:300,400,700|Biryani:300,400,700" rel="stylesheet">
   
 </head>
 <body>
@@ -15,15 +15,7 @@
 	<% if session[:user_id] %>
 		<a class="btn btn-default pull-right" href="/logout">Log Out</a>
 	<% end %>
-	<!-- FLASH MESSAGES -->
-	<% if flash[:success] or flash[:warning] %>
-		<% flash.each do |type,msg| %>
-			<% msg.each do |i| %>
-			<h4><span class="flash label label-<%= type %>"><%= i %></span></h4>
-			<% end %>
-		<% end %>
-	<% end %>
-
+	
 	<div class="row">
 		<div class="side_nav col-sm-2">
 			<!-- LEFT NAV -->
@@ -38,16 +30,46 @@
 				<nav>
 					<ul class="list-unstyled">
 						<% if session[:user_type] == 'landlord' %>
-						<li><a href="/landlords/dashboard">Dashboard</a></li>
+						<li>
+							<img src="<%= image_path('speedometer.png') %>" alt='dashboard'>
+							<a href="/landlords/dashboard">
+								Dashboard
+							</a>
+						</li>
+							<% current_user.properties.each do |p| %>
+								<li class="submenu">
+									<img src="<%= image_path('icon_home.png') %>" alt="<%= p.street %>">
+									<a href="/properties/<%= p.id %>">
+										<%= p.street %>	
+									</a>
+								</li>
+							<% end %>
 						<% else %>
-						<li><a href="/tenants/dashboard">Dashboard</a></li>
+						<li>
+							<img src="<%= image_path('speedometer.png') %>" alt='dashboard'>
+							<a href="/tenants/dashboard">Dashboard</a>
+						</li>
 						<% end %>
-						<li><a href="/logout">Logout</a></li>
+						<li>
+						<img src="<%= image_path('logout.png') %>" alt="logout">
+							<a href="/logout">Logout</a>
+						</li>
 					</ul>
 				</nav>
 			</div> <!-- .row -->
 		</div>
 		<div class="col-sm-10 col-sm-offset-2">
+			<!-- FLASH MESSAGES -->
+			<div id="flash_messages">
+			<% if flash[:success] or flash[:warning] %>
+				<% flash.each do |type,msg| %>
+					<% msg.each do |i| %>
+					<h4><span class="flash label label-<%= type %>"><%= i %></span></h4>
+					<% end %>
+				<% end %>
+			<% end %>
+			</div>
+
 			<%= yield :main_content %>
 		</div>
 	</div> <!-- .row -->

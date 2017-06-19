@@ -1,0 +1,89 @@
+<% content_for :title, 'Edit Account' %>
+
+<% content_for :main_content do %>
+	<hr>
+	<h1 class="page_heading"><span>Edit Account</span></h1>
+	<hr>
+
+	<div class="centered-form">
+	<% if @account.account_type == "Bank account" %>
+
+		<%= form_for(@account) do |f| %>
+		  <% if session[:user_type] == 'tenant' %>
+		    <input type="hidden" name="account[tenant_id]" value="<%= current_user.id %>">
+		  <% else %>
+		    <input type="hidden" name="account[landlord_id]" value="<%= current_user.id %>">
+		  <% end %>
+		  
+		  <fieldset>
+		    <legend>Bank Account</legend>
+		    <input type="hidden" name="account[account_type]" value="Bank account">
+		    <div class="field form-group">
+		    <%= f.label :nickname %><br>
+		    <%= f.text_field :name, class: 'form-control' %>
+		  </div>
+		  <div class="field form-group">
+		    <%= f.label :primary %><br>
+		    <%= f.check_box :primary, class: 'form-control' %>
+		  </div>
+		    <div class="field form-group">
+		    <%= f.label :account_number %><br>
+		    <%= f.text_field :account_number, class: 'form-control' %>
+		  </div>
+		  <div class="field form-group">
+		    <%= f.label :routing_number %><br>
+		    <%= f.text_field :routing_number, class: 'form-control' %>
+		  </div>
+		  </fieldset>
+		  
+		  <div class="actions">
+		    <%= f.submit class: 'btn btn-default btn-block label-main' %>
+		  </div>
+		<% end %>
+		</div>
+		
+		<% else %>
+		<%= form_for(@account) do |f| %>
+
+  <% if session[:user_type] == 'tenant' %>
+    <input type="hidden" name="account[tenant_id]" value="<%= current_user.id %>">
+  <% else %>
+    <input type="hidden" name="account[landlord_id]" value="<%= current_user.id %>">
+  <% end %>
+
+  <fieldset>
+    <legend>Credit/Debit Card</legend>
+    <input type="hidden" name="account[account_type]" value="Credit/Debit Card">
+    <div class="field form-group">
+    <%= f.label :nickname %><br>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :primary %><br>
+    <%= f.check_box :primary, class: 'form-control' %>
+  </div>
+    <div class="field form-group">
+    <%= f.label :card_type %><br>
+    <%= f.select(:card_type) do %>
+      <% [['Select...', ''],['Visa'], ['Mastercard'], ['American Express'], ['Discover']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :account_number %><br>
+    <%= f.text_field :account_number, class: 'form-control' %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :expiration %><br>
+    <%= f.date_select :expiration, class: 'form-control' %>
+  </div>
+  </fieldset>
+  
+  <div>
+    <%= f.submit class: 'btn btn-default btn-block label-main' %>
+  </div>
+<% end %>
+	<% end %>
+	</div>
+<% end %>

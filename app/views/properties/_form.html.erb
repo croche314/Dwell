@@ -11,47 +11,55 @@
     </div>
   <% end %>
 
-  <div class="field form_group">
-    <%= f.label :landlord_id %><br>
-    <%= f.text_field :landlord_id %>
+  
+  <div class="field form-group">
+    <%= f.label :building_type %><br>
+    <%= f.select(:building_type) do %>
+      <% [['Apartment','Apartment'], ['Single Family Home','Single Family Home'], ['Duplex/Triplex/Townhouse','Duplex/Triplex/Townhouse'], ['Dormitory', 'Dormitory']].each do |o| - %>
+        <%= content_tag(:option, o.first, value: o.last, class: 'form-control') %>
+      <% end %>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
-  </div>
-  <div class="field">
-    <%= f.label :num_units %><br>
-    <%= f.number_field :num_units %>
-  </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :street %><br>
-    <%= f.text_field :street %>
+    <%= f.text_field :street, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :city %><br>
-    <%= f.text_field :city %>
+    <%= f.text_field :city, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :state %><br>
-    <%= f.text_field :state %>
+    <%= f.text_field :state, class: 'form-control' %>
   </div>
-  <div class="field">
+  <div class="field form-group">
     <%= f.label :zip_code %><br>
-    <%= f.text_field :zip_code %>
+    <%= f.text_field :zip_code, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :pets %><br>
-    <%= f.check_box :pets %>
+  <div class="form-group">
+    <label>Pets Allowed?</label>
+    <br>
+    <input type="hidden" name="property[pets]" value="false">
+    <label class="switch">
+    <input class="form-control" type="checkbox" name="property[pets]" value="true"
+    <% if @property.pets == true %>
+    checked
+    <% end %>
+    >
+    <div class="slider round"></div>
   </div>
-  <div class="field">
-    <%= f.label :outdoor_space %><br>
-    <%= f.text_field :outdoor_space %>
-  </div>
-  <div class="field">
+  </label>
+  <div class="field form-group">
     <%= f.label :neighborhood %><br>
-    <%= f.text_field :neighborhood %>
+    <%= f.text_field :neighborhood, class: 'form-control' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field form-group">
+    <%= f.label :image %><br>
+    <%= image_tag(@property.img, alt: @property.street) %>
+
+    <%= f.file_field :img, class: 'form-control' %>
+  </div>
+  <div>
+    <%= f.submit "Update Property", :class => 'btn btn-default label-main btn-block' %>
   </div>
 <% end %>

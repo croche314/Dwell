@@ -60,17 +60,19 @@ class TenantsController < ApplicationController
 
   def dashboard
     @tenant = Tenant.find(current_user.id)
+    @my_landlord = @tenant.unit.property.landlord
     if @tenant.unit_id
       @unit = Unit.find(@tenant.unit_id)
       @property = Property.find(@unit.property_id)
       @issues = Issue.where(tenant: @tenant).where(unit: @unit)
     end
+    @accounts = Account.where(tenant_id: current_user.id)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tenant
-      @tenant = Tenant.find(current_user.id)
+      @tenant = Tenant.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

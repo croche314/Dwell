@@ -1,5 +1,6 @@
 class UnitsController < ApplicationController
   before_action :set_unit, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
+  before_action :verify_permission, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
   layout 'landlord'
 
   # GET /units
@@ -25,6 +26,7 @@ class UnitsController < ApplicationController
       @occupied = false
     end
     @issues = @unit.issues
+    
   end
 
   def show_lease
@@ -117,6 +119,12 @@ class UnitsController < ApplicationController
     @tenant.property = nil
     @tenant.unit = nil
     @tenant.save
+    if Tenant.where(unit: @unit).length > 0
+      @unit.occupied = true
+    else
+      @unit.occupied = false
+    end
+    @unit.save
     redirect_to "/units/#{@unit.id}"
   end
 
@@ -142,6 +150,24 @@ class UnitsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_unit
       @unit = Unit.find(params[:id])
+       if session[:user_type] == 'landlord' and @unit.property.landlord != current_user
+        flash[:warning] = ["You don't have permission to access that"]
+        redirect_to landlords_dashboard_url
+      elsif session[:user_type] == 'renter' and current_user.unit_id != @unit.id
+        flash[:warning] = ["You don't have permission to access that"]
+        redirect_to tenants_dashboard_url
+      end
+    end
+
+    def verify_permission
+      if session[:user_type] == 'landlord' and @unit.property.landlord != current_user
+        flash[:warning] = ["You don't have permission to access that"]
+        redirect_to landlords_dashboard_url
+      elsif session[:user_type] == 'tenant' and current_user.unit_id != @unit.id
+        flash[:warning] = ["You don't have permission to access that"]
+        redirect_to tenants_dashboard_url
+      end
+        
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

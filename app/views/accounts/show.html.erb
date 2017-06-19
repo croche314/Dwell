@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @account.tenant %>
+</p>
+
+<p>
+  <strong>Landlord:</strong>
+  <%= @account.landlord %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @account.name %>
+</p>
+
+<p>
+  <strong>Primary:</strong>
+  <%= @account.primary %>
+</p>
+
+<p>
+  <strong>Account type:</strong>
+  <%= @account.account_type %>
+</p>
+
+<p>
+  <strong>Card type:</strong>
+  <%= @account.card_type %>
+</p>
+
+<p>
+  <strong>Account number:</strong>
+  <%= @account.account_number %>
+</p>
+
+<p>
+  <strong>Expiration:</strong>
+  <%= @account.expiration %>
+</p>
+
+<%= link_to 'Edit', edit_account_path(@account) %> |
+<%= link_to 'Back', accounts_path %>
