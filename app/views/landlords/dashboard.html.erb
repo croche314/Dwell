@@ -95,7 +95,9 @@
 			<% end %>
 		</tbody>
 	</table>
-	<a class="btn btn-default btn-big label-main">Add a Tenant</a>
+	<% if @my_tenants.length < 1 %>
+	<p>You have no tenants!</p>
+	<% end %>
 </div>
 <hr>
 
@@ -124,7 +126,7 @@
       <td></td>
       <% end %>
       <td>
-        <a class="btn btn-default" href="/accounts/<%= a.id %>/edit">Edit</a>
+        <a class="btn btn-default label-main" href="/accounts/<%= a.id %>/edit">Edit</a>
       </td>
     </tr>
     <% end %>

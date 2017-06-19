@@ -42,7 +42,7 @@ class LoginController < ApplicationController
 				flash[:success] = ["New Profile Created! Welcome!"]
 				session[:user_id] = tenant.id
 				session[:user_type] = 'tenant'
-				redirect_to "/tenants/tenant_dashboard"
+				redirect_to tenants_dashboard_path
 			end
 		else
 			flash[:info] = ["Please select a valid user type"]
