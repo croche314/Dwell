@@ -184,6 +184,7 @@
 <!-- MY LANDLORD -->
 <div class="row thumbnail-row">
   <h4 class="sub_heading">My Landlord</h4>
+  <% if @my_landlord %>
   <div class="col-sm-4">
     <div class="thumbnail my_landlord">
       <img src="<%= image_path('generic-user.png') %>" alt="generic user">
@@ -196,6 +197,9 @@
       </div>
     </div>
   </div>
+  <% else %>
+  <p class="text-center">You don't have a landlord at the moment</p>
+  <% end %>
 </div>
 <hr>
 

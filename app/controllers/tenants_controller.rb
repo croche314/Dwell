@@ -60,7 +60,9 @@ class TenantsController < ApplicationController
 
   def dashboard
     @tenant = Tenant.find(current_user.id)
-    @my_landlord = @tenant.unit.property.landlord
+    if @tenant.unit_id
+      @my_landlord = @tenant.unit.property.landlord
+    end
     if @tenant.unit_id
       @unit = Unit.find(@tenant.unit_id)
       @property = Property.find(@unit.property_id)
