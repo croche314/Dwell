@@ -57,6 +57,10 @@
  	font-weight: normal;
  }
 
+ .list-no-dot {
+ 	list-style-type: none;
+ }
+
  .btn-big {
  	display: block;
  	width: 50%;
@@ -89,6 +93,10 @@
  	color: #333;
  }
 
+ .side_nav li .text-bigger {
+ 	font-size: 20px;
+ }
+
  .label-main {
  	background-color: #0FA3B1;
  	color: white;
@@ -115,13 +123,35 @@
  	height: 900px;
 }
 
- .side_nav h1 {
+header {
+	background-color: #4D5359;
+	background-color: #0FA3B1;
+	background-color: #fff;
+	height: 50px;
+	z-index: 1;
+}
+
+header h1 {
  	font-family: 'Bubbler One';
+ 	font-size: 24px;
  	width: 50%;
  	margin: 10px auto;
  }
 
+#btn_logout {
+	margin: 25px 25px 0 0;
+}
+
+#home .side_nav {
+	padding-top: 20px;
+}
+
+#home .side_nav h1 {
+	font-family: 'Bubbler One';
+}
+
  #logo {
+ 	font-family: 'Bubbler One';
  	color: yellow;
  	text-align: center;
  	text-transform: none;
@@ -135,32 +165,46 @@
 
  #logo h1 {
  	margin: -10px auto;
+ 	font-variant: normal;
  }
 
  .side_nav {
  	position: fixed;
+ 	z-index: 1;
  	top: 0;
  	left: 0;
-	background-color: #5BC8AF;
-	color: #4D5359;
-	height: 100%;
+	background-color: #F9F9F9;
 	background-color: #0FA3B1;
 	color: #1EFC1E;
+	height: 100%;
+	padding-top: 25px;
 }
 
+.side_nav .row {
+	padding: 0;
+	margin-top: 25px;
+}
+
+.side_nav label {
+ 	text-transform: uppercase;
+ 	font-weight: 300;
+ }
+
 .side_nav ul {
-	margin-top: 50px;
-	padding-left: 20px;
+	margin-top: 20px;
+	padding-left: 40px;
 }
 
 .side_nav li {
-	margin-top: 20px;
+	margin-top: 5px;
 }
 
+
  .side_nav a {
+ 	z-index: 999;
  	color: #fff;
  	font-family: 'Open Sans';
- 	font-weight: 400;
+ 	font-weight: 300;
  	font-variant: small-caps;
  }
 
@@ -168,15 +212,6 @@
  	background-color: none;
  	border-bottom: 2px solid #fff;
  	text-decoration: none;
- }
-
- .side_nav .submenu {
- 	padding-left: 15px;
- }
-
- .side_nav .submenu a {
- 	text-transform: none;
- 	font-size: 10px;
  }
 
  #home .main_content {
@@ -187,22 +222,7 @@
  	padding: 0;
  }
 
- #home .side_nav label {
- 	text-transform: uppercase;
- }
-
- #home .side_nav ul {
-	margin-top: 30px;
-	padding-left: 40px;
-}
-
-#home .side_nav li {
-	margin-top: 10px;
-}
-
- #home .side_nav a {
- 	text-transform: none;
- }
+ 
 
  .headline {
 	min-height: 500px;
@@ -240,6 +260,37 @@
  .my_landlord img {
  	width: 100px;
  	margin: 25px auto;
+ }
+
+ /* Find a Unit */
+
+ .one_listing {
+ 	height: 675px;
+ }
+
+ .one_listing img {
+ 	width: 100%;
+ }
+
+.one_listing .btn {
+ 	display: block;
+ 	font-size: 14px;
+ 	line-height: 20px;
+ 	padding: 6px 12px;
+ 	margin: 10px auto;
+ }
+
+ .one_listing p {
+ 	margin: 0 auto;
+ }
+
+ .thumbnail-row a:hover {
+ 	text-decoration: none;
+ 	background-color: #CCC;
+ }
+
+ .thumbnail:hover {
+ 	border-color: #AAA;
  }
 
  /* The switch - the box around the slider */

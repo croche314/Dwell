@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dwell | Landlord Dashboard | guest@gmail.com</title>
+  <link rel="shortcut icon" href="/assets/generic-home-teal-a5b04f8e8c61e046d23e7ec863339b14de07f02c7e493e6ff6cff15057f8c72d.png" type="image/x-icon" />
+  <link rel="stylesheet" media="all" href="/assets/accounts.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/issues.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/landlords.self-dd23bf72c47a123c1da3b5b8c2de5520113c12c13c204dc19742c906acaf340f.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/login.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/properties.self-7eee26881f3a19f5c300f313c48a0e23ff2c26d1fcc697546bc651649023866b.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/tenants.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/units.self-fdb8036fac12385e93edcdd398372fabd0da17315f28624a4cd0ec7b2e871f54.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/bootstrap/dist/css/bootstrap.self-ce4ff876691504f0f28b3c9bae0e691c640bbc9e2c4aa6dc2fe9fe0fe7e9bb1b.css?body=1" data-turbolinks-track="true" />
+<link rel="stylesheet" media="all" href="/assets/application.self-32ca8ecbe56841fb2b262e95e45336f1b3693acdae3e16957f1e9c3d394f6109.css?body=1" data-turbolinks-track="true" />
+  <script src="/assets/accounts.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/issues.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/landlords.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/login.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/properties.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/tenants.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/units.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" data-turbolinks-track="true"></script>
+<script src="/assets/application.self-8f06a73c35179188914ab50e057157639fce1401c1cdca640ac9cec33746fc5b.js?body=1" data-turbolinks-track="true"></script>
+  <meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="QiQKptoAfk0JBDPpXRz21hH2EaBH/8Z3eiGlIA6XlCgOxRoMAkFd8AnEJIG6inQheHzgySXW85ol7tl7nxURhg==" />
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,400,600|Rubik:300,400,700|Biryani:300,400,700" rel="stylesheet">
+  
+</head>
+<body>
+<div class="container-fluid">
+	<!-- CURRENT USER -->
+		<a id="btn_logout" class="btn btn-default pull-right" href="/logout">Log Out</a>
+	<header class="row">
+		<div class="col-sm-2">
+			<!-- Logo -->
+					<a id="logo" href="/">
+						<img src="/assets/house-roof-yellow-eacfc3249966a11e92e247039ddfd9ba4797a4dc99117d34a371e2e905e363f2.png">
+						<h1>Dwell</h1>
+					</a>
+		</div>
+	</header>
+	
+	<div class="row">
+		<div class="side_nav col-sm-2">
+			<!-- LEFT NAV -->
+			
+			<div class="row">
+				<nav>
+					<ul class="list-unstyled">
+						<li>
+							<img src="/assets/speedometer-61201f962f7c64e3cbec562922d6ef85fd6f341d59db0f1df06518c42efc96a5.png" alt='dashboard'>
+							<a href="/landlords/dashboard">
+								Dashboard
+							</a>
+						</li>
+								<li class="submenu">
+									<img src="/assets/icon_home-1605467e45922f678d638f5a6f07d8fce53e052fdb236e6a996456416f9ee0c3.png" alt="1234 Main St">
+									<a href="/properties/10">
+										1234 Main St	
+									</a>
+								</li>
+								<li class="submenu">
+									<img src="/assets/icon_home-1605467e45922f678d638f5a6f07d8fce53e052fdb236e6a996456416f9ee0c3.png" alt="4423 N Paulina St">
+									<a href="/properties/11">
+										4423 N Paulina St	
+									</a>
+								</li>
+						<li>
+						<img src="/assets/logout-327a49441b499e65461d79804773a26c4ddb10b0dbfc64fa8b9e50a7fbcdc717.png" alt="logout">
+							<a href="/logout">Logout</a>
+						</li>
+					</ul>
+				</nav>
+			</div> <!-- .row -->
+		</div>
+		<div class="col-sm-10 col-sm-offset-2">
+			<!-- FLASH MESSAGES -->
+			<div id="flash_messages">
+			</div>
+
+			<hr>
+<h1 class="page_heading"><span>Landlord Dashboard</span></h1>
+<hr>
+<!-- MY PROPERTIES -->
+<div class="row thumbnail-row">
+	<h4 class="sub_heading"><span>My Properties</span></h4>
+	<br>
+		<div class="col-sm-4">
+			<a href="/properties/10">
+
+				<div class="thumbnail one_property">
+					<img alt="1234 Main St" src="/uploads/property/img/10/1234main_st.jpg" />
+					<div class="caption">
+						<p class="street">1234 Main St</p>
+						<p>Chicago, IL&nbsp;60640</p>
+						<p>Neighborhood: Lincoln Square</p>
+						<label class="label label-warning">Vacancy</label>
+					</div> <!-- .caption -->
+				</div> <!-- .thumbnail -->
+			</a>
+		</div> 
+
+		<div class="col-sm-4">
+			<a href="/properties/11">
+
+				<div class="thumbnail one_property">
+					<img alt="4423 N Paulina St" src="/uploads/property/img/11/building.jpg" />
+					<div class="caption">
+						<p class="street">4423 N Paulina St</p>
+						<p>Chicago, IL&nbsp;60640</p>
+						<p>Neighborhood: Ravenswood</p>
+					</div> <!-- .caption -->
+				</div> <!-- .thumbnail -->
+			</a>
+		</div> 
+
+	<!-- New Property -->
+		<div class="col-sm-4">
+			<a href="/properties/new">
+				<div class="one_property thumbnail">
+				<br><br><br>
+					<img class="dummy_img" src="/assets/generic-home-49cddc5c4c28fbf406ee00e99e2106225731f67ebd648f3acdba357efe6e2f6b.png" alt="new property">
+					<div class="caption">
+						<br><br><br>
+						<p class="btn btn-default label-main btn-block">Add a new property</p>
+					</div>
+				</div>
+			</a>
+		</div>
+	</a>
+
+</div> <!-- .row .thumbnail-row -->
+<hr>
+
+<!-- MY TENANTS -->
+<div class="row thumbnail-row">
+	<h4 class="sub_heading"><span>My Tenants</span></h4>
+	<br>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Unit</th>
+				<th>Email</th>
+				<th>Rent</th>
+				<th>Payment Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<a href="/tenants/12">Michael Michaelson</a>
+				</td>
+				<td>
+					<a href="/properties/11">
+						4423 N Paulina St
+					</a>
+				</td>
+				<td>
+					<a href="/units/11">
+						Unit 1
+					</a>
+				</td>
+				<td>michael@gmail.com</td>
+				<td>$1200</td>
+				<td>
+					<label class="label label-success">Current</label>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<hr>
+
+<!-- MY ACCOUNTS -->
+<div class="row">
+	<h4 class="sub_heading"><span>My Accounts</span></h4>
+	<br>
+  <table class="table table-striped table-responsive">
+    <tr>
+      <th>Nickname</th>
+      <th>Type</th>
+      <th>Acct. #</th>
+      <th>Exp.</th>
+      <th>Primary</th>
+      <th>Actions</th>
+    </tr>
+    <tr>
+      <td>Chase Property Account</td>
+      <td>Bank account</td>
+      <td>...9875</td>
+      <td></td>
+        <td><label class="label label-primary">&#x2713;</label></td>
+      <td>
+        <a class="btn btn-default label-main" href="/accounts/4/edit">Edit</a>
+      </td>
+    </tr>
+  </table>
+</div> <!-- .row -->
+<a class="btn btn-default btn-big" href="/accounts/new">New Account</a>
+<hr>
+
+
+
+		</div>
+	</div> <!-- .row -->
+</div> <!-- .container-fluid -->
+</body>
+</html>

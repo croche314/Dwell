@@ -16,16 +16,20 @@
   <div class="col-sm-3">
     <p>
       <strong>Property:</strong>
+      <% if @tenant.unit_id %>
       <a href="/properties/<%= @tenant.unit.property_id %>">
         <%= @tenant.property.street if @tenant.property%>
       </a>
+      <% end %>
     </p>
 
     <p>
       <strong>Unit:</strong>
+      <% if @tenant.unit_id %>
       <a href="/units/<%= @tenant.unit_id %>">
        <%= @tenant.unit.name if @tenant.unit %>
       </a>
+      <% end %>
     </p>
 
     <p>

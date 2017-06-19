@@ -13,21 +13,25 @@
 <div class="container-fluid">
 	<!-- CURRENT USER -->
 	<% if session[:user_id] %>
-		<a class="btn btn-default pull-right" href="/logout">Log Out</a>
+		<a id="btn_logout" class="btn btn-default label-main pull-right" href="/logout">Log Out</a>
 	<% end %>
+	<header class="row">
+			
+	</header>
 	
-	<div class="row">
+	<!-- Everything under the header (left_nav and main_content) -->
+	<div class="row"> 
 		<div class="side_nav col-sm-2">
+			<!-- Logo -->
+					<a id="logo" href="<%= root_path %>">
+						<img src="<%= image_path('house-roof-yellow.png') %>">
+						<h1>Dwell</h1>
+					</a>
+		
 			<!-- LEFT NAV -->
 			<div class="row">
-				<!-- Logo -->
-				<a id="logo" href="<%= root_path %>">
-					<img src="<%= image_path('house-roof-yellow.png') %>">
-					<h1>Dwell</h1>
-				</a>
-			</div> <!-- .row -->
-			<div class="row">
 				<nav>
+					<!-- Dashboard -->
 					<ul class="list-unstyled">
 						<% if session[:user_type] == 'landlord' %>
 						<li>
@@ -36,20 +40,71 @@
 								Dashboard
 							</a>
 						</li>
+					</ul>
+
+					<!-- My Properties -->
+					<ul class="list-unstyled">
+						<label class="text-muted">My Properties</label>
 							<% current_user.properties.each do |p| %>
-								<li class="submenu">
-									<img src="<%= image_path('icon_home.png') %>" alt="<%= p.street %>">
+								<li>
 									<a href="/properties/<%= p.id %>">
 										<%= p.street %>	
 									</a>
 								</li>
 							<% end %>
+
 						<% else %>
 						<li>
 							<img src="<%= image_path('speedometer.png') %>" alt='dashboard'>
 							<a href="/tenants/dashboard">Dashboard</a>
 						</li>
 						<% end %>
+					</ul>
+
+					<% if session[:user_type] == 'landlord' %>
+					<!-- My Tenants -->
+					<ul class="list-unstyled">
+						<label class="text-muted">My Tenants</label>
+						<% current_user.tenants.each do |t| %>
+						<li>
+							<a href="/tenants/<%= t.id %>"><%= t.first_name %> <%= t.last_name %></a>
+						</li>
+						<% end %>
+					</ul>
+					<% end %>
+
+					<% if session[:user_type] == 'tenant' %>
+						<!-- My Accounts -->
+						<ul class="list-unstyled">
+							<label class="text-muted">My Unit</label>
+							<% if current_user.unit_id %>
+							<li>
+								<a href="/units/<%= current_user.unit_id %>"><%= current_user.unit.property.street %> <%= current_user.unit.name %></a>
+							</li>
+								<% if !current_user.unit.lease_img.file.nil? %>
+								<li>
+									<a href="/units/<%= current_user.unit_id %>/lease">View Lease</a>
+								</li>
+								<% end %>
+							<li>
+								<a href="/issues/new">New Issue</a>
+							</li>
+							<% end %>
+						</ul>
+					<% end %>
+
+					<!-- My Accounts -->
+					<ul class="list-unstyled">
+						<label class="text-muted">My Accounts</label>
+						<% current_user.accounts.each do |a| %>
+						<li>
+							<a href="/accounts/<%= a.id %>/edit"><%= a.name %></a>
+						</li>
+						<% end %>
+					</ul>
+
+					<!-- Logout -->
+					<ul class="list-unstyled">
 						<li>
 						<img src="<%= image_path('logout.png') %>" alt="logout">
 							<a href="/logout">Logout</a>
@@ -57,11 +112,13 @@
 					</ul>
 				</nav>
 			</div> <!-- .row -->
-		</div>
+		</div> <!-- .side_nav -->
+
+		<!-- MAIN CONTENT -->
 		<div class="col-sm-10 col-sm-offset-2">
 			<!-- FLASH MESSAGES -->
 			<div id="flash_messages">
-			<% if flash[:success] or flash[:warning] %>
+			<% if flash[:success] or flash[:warning] or flash[:main] %>
 				<% flash.each do |type,msg| %>
 					<% msg.each do |i| %>
 					<h4><span class="flash label label-<%= type %>"><%= i %></span></h4>

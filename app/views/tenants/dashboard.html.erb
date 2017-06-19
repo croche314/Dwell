@@ -33,7 +33,7 @@
 			</a>
 		</div> 
 		<% else %>
-		<a class="btn btn-default btn-big label-main" href="/tenants/7">Find a Unit!</a>
+		<a class="btn btn-default btn-big label-main" href="/units/find_unit/7">Find a Unit!</a>
 		<% end %>
 </div> <!-- .row .thumbnail-row -->
 <hr>
@@ -177,6 +177,9 @@
    	</p>
    </div> <!-- .col -->
 </div> <!-- .row -->
+  <% if @tenant.phone.nil? or @tenant.birthdate.nil? or @tenant.bio.nil? %>
+  <p class="text-center">Your profile is incomplete!</p>
+  <% end %>
    <a class="btn btn-default btn-big" href="/tenants/<%= @tenant.id %>/edit">Edit Profile</a>
 
 <hr>

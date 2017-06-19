@@ -1,6 +1,6 @@
 class UnitsController < ApplicationController
   before_action :set_unit, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
-  before_action :verify_permission, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
+  before_action :verify_permission, only: [:show, :show_lease, :remove_lease_img, :edit, :update, :destroy]
   layout 'landlord'
 
   # GET /units
@@ -47,6 +47,7 @@ class UnitsController < ApplicationController
 
   # GET /units/1/edit
   def edit
+    
   end
 
   # POST /units
@@ -93,6 +94,7 @@ class UnitsController < ApplicationController
     unless params[:query].nil?
       @query = params[:query].capitalize
       @all_tenants = Tenant.where('first_name=? OR last_name=? OR email=?', @query,@query,@query)
+
     else
       @all_tenants = Tenant.all
     end
@@ -108,7 +110,7 @@ class UnitsController < ApplicationController
     @property.save
     @unit.occupied = true
     @unit.save
-    flash[:success] = ["Tenant added!"]
+    flash[:main] = ["Tenant added!"]
     redirect_to "/units/#{@unit.id}"
   end
 
@@ -128,6 +130,10 @@ class UnitsController < ApplicationController
     redirect_to "/units/#{@unit.id}"
   end
 
+  def find_unit
+    @vacant_units = Unit.where(occupied: false)
+  end
+
   def delete_unit
     @unit = Unit.find(params[:id])
     @property = @unit.property
@@ -142,7 +148,7 @@ class UnitsController < ApplicationController
       t.save
     end
     @unit.delete
-    flash[:success] = ["Unit Deleted"]
+    flash[:main] = ["Unit Deleted"]
     redirect_to "/properties/#{@property.id}"
   end
 

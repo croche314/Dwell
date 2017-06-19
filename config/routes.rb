@@ -26,6 +26,7 @@ Rails.application.routes.draw do
 
   # TENANT
   get 'tenants/dashboard' => 'tenants#dashboard'
+  get 'units/find_unit/:tenant_id' => 'units#find_unit'
 
   resources :issues
   resources :tenants

@@ -61,7 +61,7 @@ class LoginController < ApplicationController
 			if !landlord.nil?
 				session[:user_id] = landlord.id
 				session[:user_type] = 'landlord'
-				flash[:success] = ["Welcome Back #{landlord.first_name}!"]
+				flash[:main] = ["Welcome Back #{landlord.first_name}!"]
 				redirect_to "/landlords/dashboard"
 			else
 				flash[:warning] = ["Invalid credentials"]
@@ -75,7 +75,7 @@ class LoginController < ApplicationController
 				session[:user_id] = tenant.id
 				session[:user_type] = "tenant"
 				puts session[:user_type]
-				flash[:success] = ["Welcome Back #{current_user.first_name}!"]
+				flash[:main] = ["Welcome Back #{current_user.first_name}!"]
 				redirect_to "/tenants/dashboard"
 			else
 				flash[:warning] = ["Invalid credentials"]

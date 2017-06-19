@@ -22,10 +22,19 @@
 		    <%= f.label :nickname %><br>
 		    <%= f.text_field :name, class: 'form-control' %>
 		  </div>
-		  <div class="field form-group">
-		    <%= f.label :primary %><br>
-		    <%= f.check_box :primary, class: 'form-control' %>
+		  <div class="form-group">
+		    <label>Primary Account</label>
+		    <br>
+		    <input type="hidden" name="account[primary]" value="false">
+		    <label class="switch">
+		    <input class="form-control" type="checkbox" name="account[primary]" value="true"
+		    <% if @account.primary == true %>
+		    checked
+		    <% end %>
+		    >
+		    <div class="slider round"></div>
 		  </div>
+		  </label>
 		    <div class="field form-group">
 		    <%= f.label :account_number %><br>
 		    <%= f.text_field :account_number, class: 'form-control' %>
@@ -58,10 +67,19 @@
     <%= f.label :nickname %><br>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field form-group">
-    <%= f.label :primary %><br>
-    <%= f.check_box :primary, class: 'form-control' %>
+ 	<div class="form-group">
+    <label>Primary Account</label>
+    <br>
+    <input type="hidden" name="account[primary]" value="false">
+    <label class="switch">
+    <input class="form-control" type="checkbox" name="account[primary]" value="true"
+    <% if @account.primary == true %>
+    checked
+    <% end %>
+    >
+    <div class="slider round"></div>
   </div>
+  </label>
     <div class="field form-group">
     <%= f.label :card_type %><br>
     <%= f.select(:card_type) do %>

@@ -1,0 +1,42 @@
+<% content_for :title, 'Find a Unit' %>
+
+<% content_for :main_content do %>
+<hr>
+<h1 class="page_heading">Find a Unit</h1>
+<hr>
+
+<div class="row thumbnail-row">
+  <h4 class="sub_heading">Vacant Units</h4>
+  
+  <% @vacant_units.each do |u| %>
+  <div class="col-sm-4">
+    <div class="thumbnail one_listing">
+      <%= image_tag(u.property.img, alt: u.property.street) %>
+      <div class="caption">
+        <h3>
+          <%= u.property.street %>
+          <br>
+          <span class="small text-muted"><%= u.name %></span>
+        </h3>
+        
+        <p><span class="">Neighborhood:</span> <%= u.property.neighborhood %></p>
+        <p>$<%= u.rent %>/month</p>
+        <p><%= u.sq_feet %> sq. feet</p>
+        <p><%= u.bedrooms %> beds</p>
+        <p><%= u.bathrooms %> baths</p>
+        <p>Parking: <%= u.parking %></p>
+        <p>Utilities: <%= u.utilities %></p>
+        <br>
+        <p class="text-center"><%= u.property.landlord.first_name %> <%= u.property.landlord.last_name %></a></p>
+        <p class="small text-muted text-center"><%= u.property.landlord.email %></p>
+        <p class="small text-muted text-center"><%= u.property.landlord.phone %></p>
+        <a class="btn btn-default btn-block label-main" href="/units/<%= u.id %>/add_tenant/<%= current_user.id %>">Apply</a>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  
+</div>
+<hr>
+
+<% end %>
