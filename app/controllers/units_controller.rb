@@ -1,6 +1,7 @@
 class UnitsController < ApplicationController
   before_action :set_unit, only: [:show, :show_lease, :remove_lease_img, :edit, :new_tenant, :add_tenant, :update, :destroy]
   before_action :verify_permission, only: [:show, :show_lease, :remove_lease_img, :edit, :update, :destroy]
+  before_action :logged_in?
   layout 'landlord'
 
   # GET /units

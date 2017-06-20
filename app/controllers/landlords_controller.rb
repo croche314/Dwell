@@ -1,6 +1,6 @@
 class LandlordsController < ApplicationController
   before_action :set_landlord, only: [:show, :edit, :update, :destroy]
-
+  before_action :logged_in?
   layout 'landlord'
 
   # GET /landlords
