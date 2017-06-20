@@ -4,11 +4,21 @@
 <% content_for :main_content do %>
 <!-- Headline -->
 <div class="row headline">
-	<div class="col-sm-12">
+	<div id="headline_container" class="col-sm-12">
 		<div class="headline_text">
+
+			<!-- Mobile Branding (visible xs-only) -->
+			<div id="logo" class="mobile_branding visible-xs">
+				<img src="<%= image_path('house-roof-yellow.png') %>">
+				<h1>Dwell</h1>
+			</div>
+			<br>
+
+			<!-- Call To Action -->
 			<h1>The Better Way to Rent<span class="trademark">&trade;</span></h1>
 			<h2>Modern property management for landlords, property managers, and renters</h2>
 			</div>
+			<a id="btn_try" class="btn btn-default btn-big label-main" href="/login/sign_in">Take a Free Tour!</a>
 		</div>
 	</div> <!-- .row -->
 
@@ -17,7 +27,6 @@
 		<div class="col-sm-12 text-center">
 			<h2>Get Started. It's Free</h2>
 			<p class="small">Already have an account? <a href="/login/sign_in">Sign In</a></p>
-			<p class="small">You can <a href="/login/sign_in">sign in as <i>guest@gmail.com</i></a> to preview Dwell</p>
 
 			<!-- Register Form -->
 			<form id="register_form" action="/login/register" method="post">

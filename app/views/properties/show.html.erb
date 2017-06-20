@@ -4,8 +4,12 @@
 
 <% content_for :main_content do %>
 <hr>
-<%= image_tag(@property.img.url, alt: @property.street, class: 'heading_img img-thumbnail') %>
-<h1 class="page_heading"><span><%= @property.street %></span></h1>
+<%= image_tag(@property.img.url, alt: @property.street, class: 'heading_img img-thumbnail img-responsive') %>
+<h1 class="page_heading">
+  <%= @property.street %>
+  <br>
+  <span class="small"><%= @property.neighborhood %></span>
+</h1>
 <hr>
 
 <!-- PROPERTY DETAILS -->

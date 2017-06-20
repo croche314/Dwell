@@ -3,7 +3,7 @@
 
 <% content_for :main_content do %>
 <hr>
-<h1 class="page_heading"><span>Landlord Dashboard</span></h1>
+<h1 class="page_heading"><span>Dashboard</span></h1>
 <hr>
 <!-- MY PROPERTIES -->
 <div class="row thumbnail-row">
@@ -14,7 +14,7 @@
 			<a href="/properties/<%= p.id %>">
 
 				<div class="thumbnail one_property">
-					<%= image_tag(p.img, alt: p.street) %>
+					<%= image_tag(p.img, alt: p.street, class: 'img-responsive') %>
 					<div class="caption">
 						<p class="street"><%= p.street %></p>
 						<p><%= p.city %>, <%= p.state %>&nbsp;<%= p.zip_code %></p>

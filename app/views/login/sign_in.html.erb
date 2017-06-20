@@ -2,6 +2,9 @@
 <div id="sign_in_page" class="row">
 	<h1 class="text-center">Sign In to Dwell</h1>
 	<p class="small text-center">Or, <a href="<%= login_path %>">create an account</a></p>
+
+	<p class="small text-center">You can sign in as <i>guest@gmail.com</i> with password <i>guest</i> to preview Dwell</p>
+
 	<div class="col-sm-12">
 		<form action="/login" method="post">
 			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">

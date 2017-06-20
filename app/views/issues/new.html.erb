@@ -2,7 +2,10 @@
 
 <% content_for :main_content do %>
 <hr>
-<h1 class="page_heading"><span>New Issue</span></h1>
+<h1 class="page_heading">New Issue
+<br>
+<span class="small"><%= current_user.unit.property.street %> <%= current_user.unit.name %></span>
+</h1>
 <hr>
 
 <%= render 'form' %>
