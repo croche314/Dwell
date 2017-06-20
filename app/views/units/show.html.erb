@@ -224,6 +224,9 @@
       <td class="text-center" colspan="6">No unresolved issues!</td>
     </tr>
     <% end %>
+    <% if session[:user_type] == 'tenant' and current_user.unit == @unit %>
+    <a class="btn btn-default btn-big" href="/issues/new">New Issue</a>
+    <% end %>
   </table>
 </div> <!-- .row -->
 <hr>
