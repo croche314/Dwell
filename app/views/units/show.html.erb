@@ -175,7 +175,6 @@
     <tr>
       <th>Date</th>
       <th>Tenant</th>
-      <th>Unit</th>
       <th>Category</th>
       <th>Description</th>
       <th>Urgency</th>
@@ -187,11 +186,6 @@
       <td>
         <a href="/tenants/<%= i.tenant_id %>">
           <%= i.tenant.first_name %> <%= i.tenant.last_name %>
-        </a>
-      </td>
-      <td>
-        <a href="/units/<%= i.unit_id %>">
-          <%= i.unit.property.street %> <%= i.unit.name %>
         </a>
       </td>
       <td><%= i.category %></td>
@@ -224,10 +218,10 @@
       <td class="text-center" colspan="6">No unresolved issues!</td>
     </tr>
     <% end %>
-    <% if session[:user_type] == 'tenant' and current_user.unit == @unit %>
-    <a class="btn btn-default btn-big" href="/issues/new">New Issue</a>
-    <% end %>
   </table>
+  <% if session[:user_type] == 'tenant' and current_user.unit == @unit %>
+    <a class="btn btn-default btn-big" href="/issues/new">New Issue</a>
+  <% end %>
 </div> <!-- .row -->
 <hr>
 
