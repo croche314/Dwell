@@ -11,7 +11,7 @@
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <!-- Bootstrap js -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Bubbler+One|Open+Sans:300,600" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Bubbler+One%7Open+Sans:300,600" rel="stylesheet">
 </head>
 <body>
 <div class="container-fluid">
@@ -30,7 +30,7 @@
           </button>
           <div id="mobile_logo">
 	          <a class="navbar-brand" href="index.html">
-	          	<img src="<%= image_path('house-roof-yellow.png', alt: 'roof logo')  %>">
+	          	<img src="<%= image_path('house-roof-yellow.png') %>" alt="roof_logo">
 	          </a>
 	        </div>
       </div> <!-- end .navbar-header -->
@@ -56,7 +56,7 @@
 			<div class="row">
 				<!-- Logo -->
 				<a id="logo" href="<%= root_path %>">
-					<img src="<%= image_path('house-roof-yellow.png', alt: 'roof logo') %>">
+					<img src="<%= image_path('house-roof-yellow.png') %>" alt="roof logo">
 					<h1>Dwell</h1>
 				</a>
 			</div> <!-- .row -->
@@ -89,7 +89,6 @@
 			<%= yield :main_content %>
 		</div>
 	</div>
-</div>
 <%= yield %>
 </body>
 </html>
