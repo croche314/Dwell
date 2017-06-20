@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1">
 
   <!-- Favicon -->
-  <link rel="shortcut icon" href="<%= image_path('generic-home-teal.png') %>" type="image/x-icon" />
+  <link rel="shortcut icon" href="<%= image_path('generic-home-teal.png'), alt: 'home icon' %>" type="image/x-icon" />
 
   <!-- Mobile Navigation ('just in case' CDNs) -->
   <!-- jQuery -->
@@ -42,7 +42,7 @@
           </button>
           <div id="mobile_logo">
 	          <a class="navbar-brand" href="index.html">
-	          	<img src="<%= image_path('house-roof-yellow.png') %>">
+	          	<img src="<%= image_path('house-roof-yellow.png'), 'roof logo' %>">
 	          </a>
 	        </div>
       </div> <!-- end .navbar-header -->
@@ -73,7 +73,7 @@
 		<div class="side_nav col-sm-2 hidden-xs">
 			<!-- Logo -->
 					<a id="logo" href="<%= root_path %>">
-						<img src="<%= image_path('house-roof-yellow.png') %>">
+						<img src="<%= image_path('house-roof-yellow.png'), alt: 'roof logo' %>">
 						<h1>Dwell</h1>
 					</a>
 		
@@ -84,7 +84,7 @@
 					<ul class="list-unstyled">
 						<% if session[:user_type] == 'landlord' %>
 						<li>
-							<img src="<%= image_path('speedometer.png') %>" alt='dashboard'>
+							<img src="<%= image_path('speedometer.png'), alt: 'dashboard icon' %>" alt='dashboard'>
 							<a href="/landlords/dashboard">
 								Dashboard
 							</a>
@@ -104,7 +104,7 @@
 
 						<% else %>
 						<li>
-							<img src="<%= image_path('speedometer.png') %>" alt='dashboard'>
+							<img src="<%= image_path('speedometer.png'), alt: 'dashboard icon'  %>" alt='dashboard'>
 							<a href="/tenants/dashboard">Dashboard</a>
 						</li>
 						<% end %>
@@ -155,7 +155,7 @@
 					<!-- Logout -->
 					<ul class="list-unstyled">
 						<li>
-						<img src="<%= image_path('logout.png') %>" alt="logout">
+						<img src="<%= image_path('logout.png'), alt: 'logout icon' %>" alt="logout">
 							<a href="/logout">Logout</a>
 						</li>
 					</ul>

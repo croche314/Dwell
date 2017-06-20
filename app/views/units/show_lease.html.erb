@@ -12,7 +12,7 @@
 <!-- LEASE -->
 <div class="row">
   <figure id="lease_img" class="centered">
-  	<img class="img-responsive" src="<%= @unit.lease_img.url %>">
+  	<img class="img-responsive" src="<%= @unit.lease_img.url %>" alt="<%= @unit.name %> lease">
   </figure>
   <br>
   <% if session[:user_type] == 'landlord' and @unit.property.landlord == current_user %>
