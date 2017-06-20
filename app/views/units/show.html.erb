@@ -140,7 +140,7 @@
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
               <input class="btn btn-default btn-block label-main" type="submit" value="View Lease">
             </form>
-            <% else %>
+            <% elsif !@unit.lease_img.file.nil? and session[:user_type] == 'landlord' %>
             <form action="/units/<%= @unit.id %>/edit/#lease_img" method="get">
               <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
               <input class="btn btn-default btn-block label-main" type="submit" value="Add Lease">

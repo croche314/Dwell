@@ -61,7 +61,7 @@
  	font-weight: normal;
  }
 
- .text-muted {
+ .list-unstyled .text-muted {
  	color:yellow;
  }
 
