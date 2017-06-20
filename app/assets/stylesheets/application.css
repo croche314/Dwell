@@ -448,12 +448,15 @@ button.navbar-toggle.collapsed {
 
  	.mobile_branding {
  		display: block;
- 		width: 150px;
+ 		width: 250px;
  		margin: 0 auto;
- 		background-color: #0FA3B1;
- 		border-radius: 10px;
- 		border: 2px solid #CCC;
+ 		background-color: transparent;
  		padding: 10px;
+ 		font-size: 1.5em;
+ 	}
+
+ 	#logo img {
+ 		width: 75px;
  	}
 
  	div#home.row {
@@ -467,6 +470,15 @@ button.navbar-toggle.collapsed {
  	#sign_in_page {
  		margin: 75px 15px 0 15px;
  	}
+}
+
+/***********************
+	BIG SCREENS
+************************/
+@media only screen and (min-width: 1300px) {
+	.headline {
+		background-size: cover;
+	}
 }
 
 
