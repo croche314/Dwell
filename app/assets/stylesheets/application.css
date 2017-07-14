@@ -47,6 +47,17 @@
  	margin: 10px auto;
  }
 
+ .centered-blurb {
+ 	display: block;
+ 	width: 60%;
+ 	margin: 10px auto;
+
+ }
+
+ .marketing_section {
+ 	margin: 50px auto;
+ }
+
  strong {
  	color: #777;
  	font-weight: 600;

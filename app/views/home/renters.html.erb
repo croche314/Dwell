@@ -1,0 +1,50 @@
+<% content_for :title, "Dwell | Free Property Management Software for Landlords and Renters" %>
+
+<!-- MAIN CONTENT -->
+<% content_for :main_content do %>
+	<div class="row heading">
+		<h1 class="col-sm-12 text-center">Be a Rockstar Tenant</h1>
+	</div>
+	<br>
+
+	<!-- Renter Profile -->
+	<div class="row">
+		<div id="renter_profile" class="col-sm-12 marketing_section">
+			<div class="text-center">
+				<img src="<%= image_path('generic-user.png', alt: 'user') %>">
+				<h2>Renter Profile</h2>
+			</div>
+			<p class="centered-blurb">A rental resume you can personalize and share, wherever you go.  Your Dwell Renter Profile is a detailed, easy-to-read rental resume you can share with any landlord. It includes your employment and income info, rental and rent payment history, and references—everything a landlord needs to say yes.</p>
+			<h4 class="text-center">Introduce Yourself</h4>
+			<p class="centered-blurb">Create a short bio about yourself and add a profile photo. Then add your monthly income, employment and rental history, and endorsements from references.</p>
+			<h4 class="text-center">Share with Any Landlord</h4>
+			<p class="centered-blurb">When you’re looking for your next place, you can share your Dwell Renter Profile with any landlord. Your profile goes wherever you go.</p>
+			<h4 class="text-center">You're in Charge</h4>
+			<p class="centered-blurb">Fill out your profile once, but feel free to update it anytime. Only people you share your profile with will be able to see it.</p>
+		</div>
+	</div>
+
+	<!-- Pay Rent Online -->
+	<div class="row">
+		<div id="pay_rent_online" class="col-sm-12 marketing_section">
+			<div class="text-center">
+				<img src="<%= image_path('icon_money_bag.png', alt: 'money') %>">
+				<h2>Pay Rent Online</h2>
+			</div>
+			<p class="centered-blurb">Say goodbye to paper checks.  Pay your rent online even if your landlord doesn't use Dwell! Sign up for Dwell Pay™.</p>
+			<h4 class="text-center">Choose how and when to pay</h4>
+			<p class="centered-blurb">Setting up monthly payments with Dwell is easy. Schedule your payments so you’re never late with rent again. Pay with your checking account for free, or with a credit or debit card for a small fee (2.75% per transaction).</p>
+			<h4 class="text-center">Pay with roommates</h4>
+			<p class="centered-blurb">Easily split rent, move-in costs, and security deposits.</p>
+			<h4 class="text-center">Build Your Credit History</h4>
+			<p class="centered-blurb">Choose to report your Dwell rent payments to Experian RentBureau. Just by paying your rent, you can build your credit history without taking on any additional debt. And it’s free!</p>
+		</div>
+	</div>
+	
+	<div class="col-sm-12">
+		<a id="btn_try" class="btn btn-default btn-big label-main" href="/login/sign_in">Take a Free Tour!</a>
+	</div>
+
+	</div>
+
+<% end %>

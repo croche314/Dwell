@@ -6,6 +6,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <!-- Favicon -->
+    <link rel="shortcut icon" href="<%= image_path('house-roof-black.png') %>">
   <!-- Mobile Navigation ('just in case' CDNs) -->
   <!-- jQuery -->
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -64,22 +66,19 @@
 				<nav>
 					<ul class="list-unstyled">
 						<label class="text-muted">For Landlords</label>
-						<li><a href="#">Collect Rent Online</a></li>
-						<li><a href="#">Tenant Screening</a></li>
-						<li><a href="#">Property Listings</a></li>
-						<li><a href="#">Rental Applications</a></li>
-						<li><a href="#">Rent Estimates</a></li>
+						<li><a href="/landlords#collect_rent">Collect Rent Online</a></li>
+						<li><a href="/landlords#tenant_screening">Tenant Screening</a></li>
+						<li><a href="/landlords#property_listings">Property Listings</a></li>
+						<li><a href="/landlords#rental_applications">Rental Applications</a></li>
 					</ul>
 					<ul class="list-unstyled">
 						<label class="text-muted">For Renters</label>
-						<li><a href="#">Renter Profile</a></li>
-						<li><a href="#">Pay Rent Online</a></li>
+						<li><a href="/renters#renter_profile">Renter Profile</a></li>
+						<li><a href="/renters#pay_rent_online">Pay Rent Online</a></li>
 					</ul>
 					<ul class="list-unstyled">
 						<label class="text-muted">Get Dwell</label>
-						<li><a href="#">How Dwell Works</a></li>
-						<li><a href="#">Customer Love</a></li>
-						<li><a href="#">Features &amp; Pricing</a></li>
+						<li><a href="/how_dwell_works">How Dwell Works</a></li>
 					</ul>
 				</nav>
 			</div> <!-- .row -->

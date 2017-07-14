@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'login/sign_in' => 'login#sign_in'
   post 'login' => 'login#authenticate'
   get 'logout' => 'login#logout'
+  get 'landlords' => 'home#landlords'
+  get 'renters' => 'home#renters'
+  get 'how_dwell_works' => 'home#how_dwell_works'
   get 'landlords/dashboard' => 'landlords#dashboard'
   root 'login#index'
 

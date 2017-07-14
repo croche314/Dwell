@@ -1,0 +1,70 @@
+<% content_for :title, "Dwell | Free Property Management Software for Landlords and Renters" %>
+
+<!-- MAIN CONTENT -->
+<% content_for :main_content do %>
+	<div class="row heading">
+		<h1 class="col-sm-12 text-center">How Dwell Works</h1>
+	</div>
+	<br>
+
+	<!-- Set Up Your Property -->
+	<div class="row">
+		<div id="renter_profile" class="col-sm-12 marketing_section">
+			<div class="text-center">
+				<img src="<%= image_path('generic-home-black.png', alt: 'home') %>">
+				<h2>1. Set up Your Property</h2>
+			</div>
+			<p class="centered-blurb">No matter where you are in the rental process, the first step is setting up your property. We require some very basic information from you. Enter the address and details of your unit upload a picture. From there it’s easy!</p>
+			<h4 class="text-center">Need applicants?</h4>
+			<p class="centered-blurb">Configure your property to accept applications and invite them to apply. We’ll notify you when they do.</p>
+			<h4 class="text-center">Have existing tenants?</h4>
+			<p class="centered-blurb">Set up your lease terms, invite your tenants, and use Dwell to collect rent. Straight to your bank.</p>
+		</div>
+	</div>
+
+	<!-- Invite Applicants -->
+	<div class="row">
+		<div class="col-sm-12 marketing_section">
+			<div class="text-center">
+				<img src="<%= image_path('icon_invite.png', alt: 'invite') %>">
+				<h2>2. Invite Applicants</h2>
+			</div>
+			<p class="centered-blurb">Whether you know who you want to rent to, or you just want to spread the word through a listing, in order for people to apply you’ll need to configure your property to ‘accept applications”. This activates your application and allows you to share it.</p>
+			<h4 class="text-center">Need applicants?</h4>
+			<ul class="centered-blurb">
+				<li>Post the direct link to your rental application on any listing site (like Craigslist, Zillow, etc).</li>
+				<li>Share it on social sites like Facebook and Twitter.</li>
+				<li>Add your URL to your physical ‘for rent’ sign</li>
+				<li>If you know who you want to rent to, send your application link directly to them.</li>
+			</ul>
+			<h4 class="text-center">Pay with roommates</h4>
+			<p class="centered-blurb">Easily split rent, move-in costs, and security deposits.</p>
+			<h4 class="text-center">Build Your Credit History</h4>
+			<p class="centered-blurb">Choose to report your Dwell rent payments to Experian RentBureau. Just by paying your rent, you can build your credit history without taking on any additional debt. And it’s free!</p>
+		</div>
+	</div>
+
+	<!-- Collect Rent -->
+	<div class="row">
+		<div class="col-sm-12 marketing_section">
+			<div class="text-center">
+				<img src="<%= image_path('icon_money_bag.png', alt: 'money') %>">
+				<h2>3. Collect Rent</h2>
+			</div>
+			<p class="centered-blurb">Ready to rent? Dwell lets your tenants pay rent online, by bank-to-bank transfer for free, or by credit or debit card with a small transaction fee (2.75% per transaction) charged to the tenant. Forget about paper checks, forget about late payments. Dwell rent collection uses bank-level security, and allows your tenants to send rent right to your bank account. Here’s how it works.</p>
+			<h4 class="text-center">Create your lease terms</h4>
+			<p class="centered-blurb">After you’ve set up your property, you’ll be able to set up a lease term – essentially a payment period. Enter the rent amount, when it’s due, and any move-in costs such as security deposits or pet fees. Create an account and set up a property.</p>
+			<h4 class="text-center">Invite your tenants</h4>
+			<p class="centered-blurb">Enter tenant names and email addresses, and Dwell will invite them via email. Tenants will be prompted to create an account, link their bank account, and schedule their recurring payments.</p>
+			<h4 class="text-center">Add your bank account</h4>
+			<p class="centered-blurb">We process payments through the ACH Network, a processing system that handles bank-to-bank payments. We’ll verify your identity before securely linking your account. You can add as many bank accounts as you’d like.</p>
+		</div>
+	</div>
+	
+	<div class="col-sm-12">
+		<a id="btn_try" class="btn btn-default btn-big label-main" href="/login/sign_in">Take a Free Tour!</a>
+	</div>
+
+	</div>
+
+<% end %>
